@@ -1,126 +1,173 @@
-const sessions = {
-  morning: {
-    id:'morning',title:'ISV Partner Innovation Forum',time:'09:00 – 13:00 WIB',
-    tagline:'Build what’s next with Lenovo technology.',
-    speaker:'Dr. Sonny Hendra Sudaryana',portrait:'sonny',
-    idCopy:{
-      agendaDescription:'Eksplorasi teknologi Lenovo OEM, kolaborasi dengan para ahli, serta potensi solusi dan kemitraan baru.',
-      bio:'Dr. Sonny Hendra Sudaryana menjabat sebagai Director of Digital Ecosystem Development di Komdigi.'
-    },
-    enCopy:{
-      agendaDescription:'Explore Lenovo OEM technology, collaborate with experts, and discover potential solutions and future partnerships.',
-      bio:'Dr. Sonny Hendra Sudaryana is the Director of Digital Ecosystem Development at Komdigi.'
-    }
-  },
-  afternoon: {
-    id:'afternoon',title:'Customer Leader Circle',time:'17:00 – 20:00 WIB',
-    tagline:'Shaping the Future of Manufacturing in the Age of AI',
-    speaker:'Omar Sjawaldy Anwar',portrait:'omar',
-    idCopy:{
-      agendaDescription:'Wawasan strategis, diskusi tentang manufaktur di era AI, dan jejaring eksekutif.',
-      bio:'Omar Sjawaldy Anwar menjabat sebagai President Commissioner di PT. Bank Negara Indonesia (Persero) serta Deputy CEO di PT. Pertamina (Persero).'
-    },
-    enCopy:{
-      agendaDescription:'Strategic insights, meaningful discussions on manufacturing in the age of AI, and executive networking.',
-      bio:'Omar Sjawaldy Anwar is President Commissioner of PT. Bank Negara Indonesia (Persero) and Deputy CEO of PT. Pertamina (Persero).'
-    }
-  }
-};
-const session = sessions[document.body.dataset.session] || sessions.morning;
-const siteName = 'OEM Innovation Forum Indonesia';
+const session = eventData.sessions[document.body.dataset.session] || eventData.sessions.morning;
 const assetBase = new URL('assets/', document.currentScript.src).href;
 const copy = {
-  id:{navAgenda:'Agenda',navSpeakers:'Speaker',navLocation:'Lokasi',agenda:'Agenda',date:'Rabu, 14 Oktober 2026',speakers:'Speaker',invited:'Invited Speaker',bioLabel:'Tentang Pembicara',location:'Lokasi',locationIntro:'Temui kami di The Westin Jakarta.',mapTitle:'Lokasi The Westin Jakarta di Google Maps',directions:'Petunjuk arah'},
-  en:{navAgenda:'Agenda',navSpeakers:'Speaker',navLocation:'Location',agenda:'Agenda',date:'Wednesday, 14 October 2026',speakers:'Speaker',invited:'Invited Speaker',bioLabel:'About the Speaker',location:'Location',locationIntro:'Meet us at The Westin Jakarta.',mapTitle:'The Westin Jakarta on Google Maps',directions:'Get directions'}
+  id: {
+    navAgenda: 'Agenda', navSpeakers: 'Speaker', navLocation: 'Lokasi', agenda: 'Agenda',
+    date: 'Rabu, 14 Oktober 2026', speakers: 'Speaker', location: 'Lokasi',
+    locationIntro: 'Temui kami di The Westin Jakarta.',
+    mapTitle: 'Lokasi The Westin Jakarta di Google Maps', directions: 'Petunjuk arah',
+    tentative: 'Tentatif', moderator: 'Moderator', photoSoon: 'Foto segera hadir',
+    bioLabel: 'Tentang pembicara', navigationLabel: 'Navigasi utama',
+    languageLabel: 'Bahasa', skip: 'Lewati ke konten'
+  },
+  en: {
+    navAgenda: 'Agenda', navSpeakers: 'Speaker', navLocation: 'Location', agenda: 'Agenda',
+    date: 'Wednesday, 14 October 2026', speakers: 'Speaker', location: 'Location',
+    locationIntro: 'Meet us at The Westin Jakarta.',
+    mapTitle: 'The Westin Jakarta on Google Maps', directions: 'Get directions',
+    tentative: 'Tentative', moderator: 'Moderator', photoSoon: 'Photo coming soon',
+    bioLabel: 'About the speaker', navigationLabel: 'Main navigation',
+    languageLabel: 'Language', skip: 'Skip to content'
+  }
 };
+const navigationLinks = [...document.querySelectorAll('.nav-link')];
+let navigationSections = [];
+let navigationFrame = 0;
+let activeNavigationId = null;
 
-function renderPage(language){
-  const t={...copy[language],...session[`${language}Copy`]};
-  document.documentElement.lang=language;
-  document.title=siteName;
-  document.querySelector('meta[name="description"]').content=`${siteName} – ${session.title}. ${t.date}, ${session.time}, The Westin Jakarta. ${t.agendaDescription}`;
-  document.querySelectorAll('[data-i18n]').forEach(node=>{node.textContent=t[node.dataset.i18n];});
-  document.getElementById('hero-title').textContent=session.tagline;
-  document.querySelector('.hero-session-label').textContent=session.title;
-  document.querySelector('.flag').classList.toggle('english',language==='en');
-  const banner=document.querySelector('.hero-banner');
-  banner.src=`${assetBase}hero-${session.id}.webp`;
-  banner.alt=`Lenovo OEM Innovation Forum Indonesia 2026 – ${session.title}, 14 October 2026, ${session.time}, The Westin Jakarta`;
-
-  document.getElementById('event-sections').innerHTML=`
-    <section id="agenda" class="agenda-section section-purple">
-      <div class="container"><div class="agenda-panel glass">
-        <h2 class="floating-title">${t.agenda}</h2>
-        <p class="agenda-date">${t.date} · The Westin Jakarta</p>
-        <article class="agenda-row">
-          <div class="agenda-row-heading"><h3>${session.title}</h3><span>${session.time}</span></div>
-          <p>${t.agendaDescription}</p>
-        </article>
-      </div></div>
-    </section>
-    <section id="speakers" class="speakers-section section-purple">
-      <div class="container"><h2 class="section-title">${t.speakers}</h2>
-        <div class="speakers-grid speakers-grid--single">
-          <article class="speaker-card glass">
-            <p class="speaker-label">${t.invited}</p>
-            <div class="portrait portrait--${session.portrait}"><img src="${assetBase}speaker-${session.portrait}-hd.png" alt="${session.speaker}" width="874" height="1241" loading="lazy"></div>
-            <div class="speaker-content"><h3>${session.speaker}</h3><p class="speaker-bio" aria-label="${t.bioLabel}">${t.bio}</p></div>
-            <div class="speaker-session"><span>${session.title}</span><small>${session.time}</small></div>
-          </article>
-        </div>
-      </div>
-    </section>
-    <section id="location" class="location-section section-purple">
-      <div class="container"><h2 class="section-title">${t.location}</h2><p class="section-subtitle">${t.locationIntro}</p>
-        <div class="location-info"><strong>The Westin Jakarta</strong><p>Jl. H.R. Rasuna Said Blok C No.22A, Jakarta</p></div>
-        <div class="map-frame glass"><iframe title="${t.mapTitle}" src="https://maps.google.com/maps?q=The%20Westin%20Jakarta%20Jl.%20H.R.%20Rasuna%20Said%20Blok%20C%20No.22A&z=16&output=embed" width="1180" height="370" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
-        <a class="directions-button" href="https://www.google.com/maps/dir/?api=1&destination=The+Westin+Jakarta+Jl.+H.R.+Rasuna+Said+Blok+C+No.22A" target="_blank" rel="noopener noreferrer">${t.directions}</a>
-      </div>
-    </section>`;
-  observeSections();
+function escapeHTML(value) {
+  return String(value ?? '').replace(/[&<>"']/g, character => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  })[character]);
 }
 
-const navigationLinks=[...document.querySelectorAll('.nav-link')];
-let navigationSections=[];
-let navigationFrame=0;
-let activeNavigationId=null;
+function renderParticipant(participant, t) {
+  const badge = participant.tentative
+    ? `<span class="tentative-badge">${escapeHTML(t.tentative)}</span>`
+    : participant.moderator
+      ? `<span class="moderator-label">${escapeHTML(t.moderator)}</span>` : '';
+  return `<li class="agenda-participant">
+    <div class="agenda-participant-name"><strong>${escapeHTML(participant.name)}</strong>${badge}</div>
+    ${participant.role ? `<p>${escapeHTML(participant.role)}</p>` : ''}
+  </li>`;
+}
 
-function updateActiveNavigation(){
-  navigationFrame=0;
-  if(!navigationSections.length)return;
-  const scrollPadding=parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop)||0;
-  const marker=scrollPadding+8;
-  let activeSection=navigationSections[0];
-  for(const section of navigationSections){
-    if(section.getBoundingClientRect().top<=marker)activeSection=section;
+function renderAgenda(t) {
+  return session.agenda.map(item => `<li class="agenda-row">
+    <div class="agenda-time" aria-label="${escapeHTML(item.time)} WIB">
+      <time datetime="2026-10-14T${escapeHTML(item.start)}:00+07:00">${escapeHTML(item.start)}</time>
+      <span aria-hidden="true">–</span>
+      <time datetime="2026-10-14T${escapeHTML(item.end)}:00+07:00">${escapeHTML(item.end)}</time>
+    </div>
+    <div class="agenda-content">
+      <h3>${escapeHTML(item.title)}</h3>
+      <ul class="agenda-participants${item.participants.length > 2 ? ' agenda-participants--panel' : ''}">
+        ${item.participants.map(participant => renderParticipant(participant, t)).join('')}
+      </ul>
+    </div>
+  </li>`).join('');
+}
+
+function renderSpeaker(id, language, t) {
+  const speaker = eventData.speakers[id];
+  const photo = speaker.portrait
+    ? `<div class="portrait portrait--${escapeHTML(id)}"><img src="${escapeHTML(assetBase + speaker.portrait)}" alt="${escapeHTML(speaker.name)}" width="874" height="1241" loading="lazy" data-speaker-id="${escapeHTML(id)}"></div>`
+    : `<div class="portrait portrait--placeholder" role="img" aria-label="${escapeHTML(speaker.name + ' – ' + t.photoSoon)}"><span aria-hidden="true">${escapeHTML(speaker.initials)}</span></div>`;
+  return `<article class="speaker-card glass" aria-labelledby="speaker-${escapeHTML(id)}">
+    <h3 id="speaker-${escapeHTML(id)}" class="speaker-name">${escapeHTML(speaker.name)}</h3>
+    ${photo}
+    <p class="photo-status"${speaker.portrait ? ' aria-hidden="true"' : ''}>${speaker.portrait ? '' : escapeHTML(t.photoSoon)}</p>
+    <p class="speaker-bio" aria-label="${escapeHTML(t.bioLabel)}">${escapeHTML(speaker.bio[language])}</p>
+  </article>`;
+}
+
+function renderPage(language, preserveScroll = false) {
+  const t = copy[language] || copy.id;
+  const previousSection = preserveScroll ? document.getElementById(activeNavigationId) : null;
+  const previousOffset = previousSection?.getBoundingClientRect().top;
+  document.documentElement.lang = language;
+  document.title = eventData.siteName;
+  document.querySelector('meta[name="description"]').content = `${eventData.siteName} – ${session.title}. ${t.date}, ${session.time}, The Westin Jakarta.`;
+  document.querySelectorAll('[data-i18n]').forEach(node => { node.textContent = t[node.dataset.i18n]; });
+  document.querySelector('.main-nav').setAttribute('aria-label', t.navigationLabel);
+  document.getElementById('language').setAttribute('aria-label', t.languageLabel);
+  document.querySelector('.skip-link').textContent = t.skip;
+  document.getElementById('hero-title').textContent = session.tagline;
+  document.querySelector('.hero-session-label').textContent = session.title;
+  document.querySelector('.hero-time').textContent = session.time;
+  document.querySelector('.flag').classList.toggle('english', language === 'en');
+  const banner = document.querySelector('.hero-banner');
+  banner.src = `${assetBase}hero-${session.id}-updated.webp`;
+  banner.alt = `${eventData.siteName} – ${session.title}, ${t.date}, ${session.time}, The Westin Jakarta`;
+
+  document.getElementById('event-sections').innerHTML = `
+    <section id="agenda" class="agenda-section section-purple" aria-labelledby="agenda-title">
+      <div class="container"><div class="agenda-panel glass">
+        <h2 id="agenda-title" class="floating-title">${escapeHTML(t.agenda)}</h2>
+        <div class="agenda-heading"><p class="agenda-date">${escapeHTML(t.date)} · The Westin Jakarta</p><p class="agenda-window">${escapeHTML(session.time)}</p></div>
+        <ol class="agenda-list">${renderAgenda(t)}</ol>
+      </div></div>
+    </section>
+    <section id="speakers" class="speakers-section section-purple" aria-labelledby="speakers-title">
+      <div class="container"><h2 id="speakers-title" class="section-title">${escapeHTML(t.speakers)}</h2>
+        <div class="speakers-grid">${session.speakerIds.map(id => renderSpeaker(id, language, t)).join('')}</div>
+      </div>
+    </section>
+    <section id="location" class="location-section section-purple" aria-labelledby="location-title">
+      <div class="container"><h2 id="location-title" class="section-title">${escapeHTML(t.location)}</h2><p class="section-subtitle">${escapeHTML(t.locationIntro)}</p>
+        <div class="location-info"><strong>The Westin Jakarta</strong><p>Jl. H.R. Rasuna Said Blok C No.22A, Jakarta</p></div>
+        <div class="map-frame glass"><iframe title="${escapeHTML(t.mapTitle)}" src="https://maps.google.com/maps?q=The%20Westin%20Jakarta%20Jl.%20H.R.%20Rasuna%20Said%20Blok%20C%20No.22A&z=16&output=embed" width="1180" height="370" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
+        <a class="directions-button" href="https://www.google.com/maps/dir/?api=1&destination=The+Westin+Jakarta+Jl.+H.R.+Rasuna+Said+Blok+C+No.22A" target="_blank" rel="noopener noreferrer">${escapeHTML(t.directions)}</a>
+      </div>
+    </section>`;
+
+  document.querySelectorAll('img[data-speaker-id]').forEach(image => {
+    image.addEventListener('error', () => {
+      const speaker = eventData.speakers[image.dataset.speakerId];
+      const portrait = image.parentElement;
+      portrait.className = 'portrait portrait--placeholder';
+      portrait.setAttribute('role', 'img');
+      portrait.setAttribute('aria-label', `${speaker.name} – ${t.photoSoon}`);
+      portrait.innerHTML = `<span aria-hidden="true">${escapeHTML(speaker.initials)}</span>`;
+      const status = portrait.nextElementSibling;
+      status.removeAttribute('aria-hidden');
+      status.textContent = t.photoSoon;
+    }, { once: true });
+  });
+  observeSections();
+  if (previousSection && Number.isFinite(previousOffset)) {
+    const nextSection = document.getElementById(previousSection.id);
+    window.scrollBy({ top: nextSection.getBoundingClientRect().top - previousOffset, behavior: 'instant' });
+    scheduleNavigationUpdate();
+  }
+}
+
+function updateActiveNavigation() {
+  navigationFrame = 0;
+  if (!navigationSections.length) return;
+  const scrollPadding = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
+  const marker = scrollPadding + 8;
+  let activeSection = navigationSections[0];
+  for (const section of navigationSections) {
+    if (section.getBoundingClientRect().top <= marker) activeSection = section;
     else break;
   }
-  if(window.scrollY+window.innerHeight>=document.documentElement.scrollHeight-2){
-    activeSection=navigationSections[navigationSections.length-1];
+  if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
+    activeSection = navigationSections[navigationSections.length - 1];
   }
-  if(activeNavigationId===activeSection.id)return;
-  activeNavigationId=activeSection.id;
-  navigationLinks.forEach(link=>{
-    const active=link.hash===`#${activeNavigationId}`;
-    link.classList.toggle('active',active);
-    if(active)link.setAttribute('aria-current','location');
+  if (activeNavigationId === activeSection.id) return;
+  activeNavigationId = activeSection.id;
+  navigationLinks.forEach(link => {
+    const active = link.hash === `#${activeNavigationId}`;
+    link.classList.toggle('active', active);
+    if (active) link.setAttribute('aria-current', 'location');
     else link.removeAttribute('aria-current');
   });
 }
 
-function scheduleNavigationUpdate(){
-  if(!navigationFrame)navigationFrame=requestAnimationFrame(updateActiveNavigation);
+function scheduleNavigationUpdate() {
+  if (!navigationFrame) navigationFrame = requestAnimationFrame(updateActiveNavigation);
 }
 
-function observeSections(){
-  navigationSections=navigationLinks.map(link=>document.getElementById(link.hash.slice(1))).filter(Boolean);
+function observeSections() {
+  navigationSections = navigationLinks.map(link => document.getElementById(link.hash.slice(1))).filter(Boolean);
   updateActiveNavigation();
 }
 
-window.addEventListener('scroll',scheduleNavigationUpdate,{passive:true});
-window.addEventListener('resize',scheduleNavigationUpdate);
-window.addEventListener('hashchange',scheduleNavigationUpdate);
-window.addEventListener('load',scheduleNavigationUpdate);
+window.addEventListener('scroll', scheduleNavigationUpdate, { passive: true });
+window.addEventListener('resize', scheduleNavigationUpdate);
+window.addEventListener('hashchange', scheduleNavigationUpdate);
+window.addEventListener('load', scheduleNavigationUpdate);
 document.fonts.ready.then(scheduleNavigationUpdate);
-document.getElementById('language').addEventListener('change',event=>renderPage(event.target.value));
+document.getElementById('language').addEventListener('change', event => renderPage(event.target.value, true));
 renderPage('id');

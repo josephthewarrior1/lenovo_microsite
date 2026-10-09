@@ -1,26 +1,36 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { runInNewContext } from 'node:vm';
 
-// Both routes share one layout, stylesheet and script. No server rewrite is needed.
+// Both routes and the root page use the same public event data and layout.
 const source = await readFile(new URL('./dist/index.html', import.meta.url), 'utf8');
-const sessions = {
-  morning: {title:'ISV Partner Innovation Forum',tagline:'Build what’s next with Lenovo technology.',time:'09:00 – 13:00 WIB'},
-  afternoon: {title:'Customer Leader Circle',tagline:'Shaping the Future of Manufacturing in the Age of AI',time:'17:00 – 20:00 WIB'}
-};
+const script = await readFile(new URL('./dist/event-data.js', import.meta.url), 'utf8');
+const data = runInNewContext(`${script}\n;eventData`, Object.create(null));
+const version = '20261010';
+const escapeHTML = value => String(value).replace(/[&<>"']/g, character => ({
+  '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+})[character]);
 
-for (const [id, session] of Object.entries(sessions)) {
-  const directory = new URL(`./dist/${id}/`, import.meta.url);
-  await mkdir(directory, {recursive:true});
-  const html = source
-    .replaceAll('ISV Partner Innovation Forum', session.title)
-    .replaceAll('Build what’s next with Lenovo technology.', session.tagline)
-    .replaceAll('09:00 – 13:00 WIB', session.time)
-    .replaceAll('hero-morning.webp', `hero-${id}.webp`)
-    .replace('data-session="morning"', `data-session="${id}"`)
-    .replaceAll('href="assets/', 'href="../assets/')
-    .replaceAll('src="assets/', 'src="../assets/')
-    .replace('href="styles.css"', 'href="../styles.css"')
-    .replace('src="app.js"', 'src="../app.js"');
-  await writeFile(new URL('index.html', directory), html);
+function renderEntry(session, relativePrefix) {
+  const description = `${data.siteName} – ${session.title}. 14 Oktober 2026, ${session.time}, The Westin Jakarta.`;
+  const bannerDescription = `${data.siteName} – ${session.title}, 14 October 2026, ${session.time}, The Westin Jakarta`;
+  return source
+    .replace(/(<meta name="description" content=")[^"]*(">)/, `$1${escapeHTML(description)}$2`)
+    .replace(/(<title>)[\s\S]*?(<\/title>)/, `$1${escapeHTML(data.siteName)}$2`)
+    .replace(/(data-session=")[^"]*(")/, `$1${session.id}$2`)
+    .replace(/(<p class="hero-session-label">)[\s\S]*?(<\/p>)/, `$1${escapeHTML(session.title)}$2`)
+    .replace(/(<h1 id="hero-title">)[\s\S]*?(<\/h1>)/, `$1${escapeHTML(session.tagline)}$2`)
+    .replace(/(<p class="hero-time">)[\s\S]*?(<\/p>)/, `$1${escapeHTML(session.time)}$2`)
+    .replace(/(class="hero-banner"[^>]*\balt=")[^"]*(")/, `$1${escapeHTML(bannerDescription)}$2`)
+    .replace(/hero-(?:morning|afternoon)(?:-updated)?\.webp/g, `hero-${session.id}-updated.webp`)
+    .replace(/\b(href|src)="(?:\.\.\/)?(assets\/[^\"]+)"/g, (_, attribute, path) => `${attribute}="${relativePrefix}${path}"`)
+    .replace(/\b(href|src)="(?:\.\.\/)?(styles\.css|event-data\.js|app\.js)(?:\?[^\"]*)?"/g, (_, attribute, path) => `${attribute}="${relativePrefix}${path}?v=${version}"`);
 }
 
-console.log('Built /morning/ and /afternoon/. Root defaults to morning.');
+await writeFile(new URL('./dist/index.html', import.meta.url), renderEntry(data.sessions.morning, ''));
+for (const session of Object.values(data.sessions)) {
+  const directory = new URL(`./dist/${session.id}/`, import.meta.url);
+  await mkdir(directory, { recursive: true });
+  await writeFile(new URL('index.html', directory), renderEntry(session, '../'));
+}
+
+console.log('Built /morning/ and /afternoon/ from event-data.js. Root defaults to morning.');

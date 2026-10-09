@@ -1,0 +1,299 @@
+// Source: Tracker Lenovo OEM Innovation Forum.xlsx, "Agenda for Bumpers".
+// Workbook downloaded from the user-shared Chrome workbook on 10 October 2026.
+// Samuel Tan biography:
+// https://docs.google.com/document/d/1jiSpzH0yygMBQoJ7xft0DNwyMRPSvQBn/edit
+// Yellow E7 identifies a tentative executive speaker, not three confirmed speakers.
+const eventData = {
+  siteName: 'OEM Innovation Forum Indonesia',
+  speakers: {
+    sonny: {
+      id: 'sonny',
+      name: 'Dr. Sonny Hendra Sudaryana',
+      role: 'Director of Digital Ecosystem Development, Kementerian Komunikasi dan Digital (KOMDIGI)',
+      portrait: 'speaker-sonny-hd.png',
+      initials: 'SH',
+      bio: {
+        id: 'Dr. Sonny Hendra Sudaryana menjabat sebagai Director of Digital Ecosystem Development di Kementerian Komunikasi dan Digital (KOMDIGI).',
+        en: 'Dr. Sonny Hendra Sudaryana is Director of Digital Ecosystem Development at Kementerian Komunikasi dan Digital (KOMDIGI).'
+      }
+    },
+    omar: {
+      id: 'omar',
+      name: 'Omar Sjawaldy Anwar',
+      role: 'President Commissioner, BNI (2025-Present); Former Deputy President Director & CEO, Pertamina (2009-2010)',
+      portrait: 'speaker-omar-hd.png',
+      initials: 'OA',
+      bio: {
+        id: 'Omar Sjawaldy Anwar merupakan President Commissioner di BNI (2025–sekarang) dan sebelumnya menjabat sebagai Deputy President Director & CEO di Pertamina (2009–2010).',
+        en: 'Omar Sjawaldy Anwar is President Commissioner of BNI (2025–present) and was Deputy President Director & CEO of Pertamina (2009–2010).'
+      }
+    },
+    ryan: {
+      id: 'ryan',
+      name: 'Ryan Renaldy',
+      role: 'Country Business Manager OEM, Lenovo Indonesia',
+      portrait: null,
+      initials: 'RR',
+      bio: {
+        id: 'Ryan Renaldy menjabat sebagai Country Business Manager OEM di Lenovo Indonesia.',
+        en: 'Ryan Renaldy is Country Business Manager OEM at Lenovo Indonesia.'
+      }
+    },
+    aldrian: {
+      id: 'aldrian',
+      name: 'Aldrian R. Susantio',
+      role: 'Central Asia Pacific Regional Manager Lenovo Account Team, Intel Corporation',
+      portrait: null,
+      initials: 'AS',
+      bio: {
+        id: 'Aldrian R. Susantio menjabat sebagai Central Asia Pacific Regional Manager Lenovo Account Team di Intel Corporation.',
+        en: 'Aldrian R. Susantio is Central Asia Pacific Regional Manager Lenovo Account Team at Intel Corporation.'
+      }
+    },
+    azis: {
+      id: 'azis',
+      name: 'Azis Wonosari',
+      role: 'Senior Solution Consultant, Lenovo Indonesia',
+      portrait: null,
+      initials: 'AW',
+      bio: {
+        id: 'Azis Wonosari menjabat sebagai Senior Solution Consultant di Lenovo Indonesia.',
+        en: 'Azis Wonosari is Senior Solution Consultant at Lenovo Indonesia.'
+      }
+    },
+    imam: {
+      id: 'imam',
+      name: 'Imam Munajat',
+      role: 'Client Solution Architect (CSA), Lenovo Indonesia',
+      portrait: null,
+      initials: 'IM',
+      bio: {
+        id: 'Imam Munajat menjabat sebagai Client Solution Architect (CSA) di Lenovo Indonesia.',
+        en: 'Imam Munajat is Client Solution Architect (CSA) at Lenovo Indonesia.'
+      }
+    },
+    andi: {
+      id: 'andi',
+      name: 'Andi Darma',
+      role: 'Direktur, Next Gen AI',
+      portrait: null,
+      initials: 'AD',
+      bio: {
+        id: 'Andi Darma menjabat sebagai Direktur di Next Gen AI.',
+        en: 'Andi Darma is Director at Next Gen AI.'
+      }
+    },
+    samuel: {
+      id: 'samuel',
+      name: 'Samuel Tan',
+      role: 'CEO & Cofounder, Auk Industries',
+      portrait: 'speaker-samuel.jpg',
+      initials: 'ST',
+      bio: {
+        id: 'Samuel Tan adalah CEO dan Cofounder Auk Industries, yang mengembangkan kecerdasan industri berbasis data pabrik secara real time untuk mendukung operasi manufaktur. Sebelumnya, ia bekerja sebagai Operations Associate di McKinsey dengan fokus pada lean manufacturing dan rantai pasok. Ia juga pernah mengikuti Operations Management Leadership Program (OMLP) di General Electric.',
+        en: 'Samuel Tan is CEO and Cofounder of Auk Industries, which uses industrial intelligence and real-time factory data to support manufacturing operations. He previously worked as an Operations Associate at McKinsey, focusing on lean manufacturing and supply chains, and earlier joined General Electric’s Operations Management Leadership Program (OMLP).'
+      }
+    },
+    ricky: {
+      id: 'ricky',
+      name: 'Ricky Chan',
+      role: 'Head of Asia Pacific OEM Solutions, Lenovo',
+      portrait: null,
+      initials: 'RC',
+      bio: {
+        id: 'Ricky Chan menjabat sebagai Head of Asia Pacific OEM Solutions di Lenovo.',
+        en: 'Ricky Chan is Head of Asia Pacific OEM Solutions at Lenovo.'
+      }
+    },
+    joni: {
+      id: 'joni',
+      name: 'Joni Irwanto',
+      role: 'Sales Director - Key, Global, and MM Business Account, Lenovo Indonesia',
+      portrait: null,
+      initials: 'JI',
+      bio: {
+        id: 'Joni Irwanto menjabat sebagai Sales Director - Key, Global, and MM Business Account di Lenovo Indonesia.',
+        en: 'Joni Irwanto is Sales Director - Key, Global, and MM Business Account at Lenovo Indonesia.'
+      }
+    },
+    naraina: {
+      id: 'naraina',
+      name: 'Naraina Yogas',
+      role: 'CTO, Linknau',
+      portrait: null,
+      initials: 'NY',
+      bio: {
+        id: 'Naraina Yogas menjabat sebagai CTO di Linknau.',
+        en: 'Naraina Yogas is CTO at Linknau.'
+      }
+    },
+    dany: {
+      id: 'dany',
+      name: 'Dany Beler',
+      role: 'Stand Up Comedy',
+      portrait: null,
+      initials: 'DB',
+      bio: {
+        id: 'Dany Beler tampil dalam sesi Stand-up Comedy.',
+        en: 'Dany Beler appears in the Stand-up Comedy session.'
+      }
+    }
+  },
+  sessions: {
+    morning: {
+      id: 'morning',
+      title: 'ISV Partner Innovation Forum',
+      tagline: 'Build what’s next with Lenovo technology.',
+      time: '08:00 – 12:50 WIB',
+      registration: '08:00 – 09:00 WIB',
+      speakerIds: ['sonny', 'ryan', 'aldrian', 'azis', 'imam', 'andi', 'samuel', 'ricky'],
+      agenda: [
+        {
+          start: '08:00', end: '09:00', time: '08:00 – 09:00',
+          title: 'Registration, Coffee Break, Booth Visit & Networking',
+          participants: [{ name: 'KIM', role: '' }], sourceRow: 5
+        },
+        {
+          start: '09:00', end: '09:05', time: '09:00 – 09:05',
+          title: 'MC Opening',
+          participants: [{ name: 'MC', role: '' }], sourceRow: 6
+        },
+        {
+          start: '09:05', end: '09:15', time: '09:05 – 09:15',
+          title: 'Opening Speech by Lenovo Executive',
+          participants: [{ name: 'Lenovo Executive', role: '', tentative: true }],
+          tentative: true, sourceRow: 7
+        },
+        {
+          start: '09:15', end: '09:35', time: '09:15 – 09:35',
+          title: 'Government Keynote Speech',
+          participants: [{ speakerId: 'sonny', name: 'Dr. Sonny Hendra Sudaryana', role: 'Director of Digital Ecosystem Development, Kementerian Komunikasi dan Digital (KOMDIGI)' }],
+          sourceRow: 8
+        },
+        {
+          start: '09:35', end: '10:20', time: '09:35 – 10:20',
+          title: 'Lenovo OEM Value Presentation',
+          participants: [{ speakerId: 'ryan', name: 'Ryan Renaldy', role: 'Country Business Manager OEM, Lenovo Indonesia' }],
+          sourceRow: 9
+        },
+        {
+          start: '10:20', end: '10:40', time: '10:20 – 10:40',
+          title: 'Intel Presentation',
+          participants: [{ speakerId: 'aldrian', name: 'Aldrian R. Susantio', role: 'Central Asia Pacific Regional Manager Lenovo Account Team, Intel Corporation' }],
+          sourceRow: 10
+        },
+        {
+          start: '10:40', end: '10:55', time: '10:40 – 10:55',
+          title: 'OEM & Advanced Services Presentation',
+          participants: [{ speakerId: 'azis', name: 'Azis Wonosari', role: 'Senior Solution Consultant, Lenovo Indonesia' }],
+          sourceRow: 11
+        },
+        {
+          start: '10:55', end: '11:15', time: '10:55 – 11:15',
+          title: 'ThinkEdge & Workstation Presentation',
+          participants: [{ speakerId: 'imam', name: 'Imam Munajat', role: 'Client Solution Architect (CSA), Lenovo Indonesia' }],
+          sourceRow: 12
+        },
+        {
+          start: '11:15', end: '11:30', time: '11:15 – 11:30',
+          title: 'Showcase 1 - Next Gen AI',
+          participants: [{ speakerId: 'andi', name: 'Andi Darma', role: 'Direktur, Next Gen AI' }],
+          sourceRow: 13
+        },
+        {
+          start: '11:30', end: '11:45', time: '11:30 – 11:45',
+          title: 'Showcase 2 - AUK Industries',
+          participants: [{ speakerId: 'samuel', name: 'Samuel Tan', role: 'CEO & Cofounder, Auk Industries' }],
+          sourceRow: 14
+        },
+        {
+          start: '11:45', end: '11:50', time: '11:45 – 11:50',
+          title: 'Photo Session & Closing Remarks',
+          participants: [{ speakerId: 'ricky', name: 'Ricky Chan', role: 'Head of Asia Pacific OEM Solutions, Lenovo' }],
+          sourceRow: 15
+        },
+        {
+          start: '11:50', end: '12:50', time: '11:50 – 12:50',
+          title: 'Lunch, Networking & Booth Visit',
+          participants: [{ name: 'KIM', role: '' }], sourceRow: 16
+        }
+      ]
+    },
+    afternoon: {
+      id: 'afternoon',
+      title: 'Customer Leader Circle',
+      tagline: 'Shaping the Future of Manufacturing in the Age of AI',
+      time: '17:00 – 20:50 WIB',
+      registration: '17:00 – 18:00 WIB',
+      speakerIds: ['omar', 'joni', 'aldrian', 'ryan', 'samuel', 'naraina', 'ricky', 'dany'],
+      agenda: [
+        {
+          start: '17:00', end: '18:00', time: '17:00 – 18:00',
+          title: 'Registration, Coffee Break, Booth Visit & Networking',
+          participants: [{ name: 'KIM', role: '' }], sourceRow: 22
+        },
+        {
+          start: '18:00', end: '18:05', time: '18:00 – 18:05',
+          title: 'MC Opening',
+          participants: [{ name: 'MC', role: '' }], sourceRow: 23
+        },
+        {
+          start: '18:05', end: '18:15', time: '18:05 – 18:15',
+          title: 'Opening Speech by Lenovo Executive',
+          participants: [{ speakerId: 'joni', name: 'Joni Irwanto', role: 'Sales Director - Key, Global, and MM Business Account, Lenovo Indonesia' }],
+          sourceRow: 24
+        },
+        {
+          start: '18:15', end: '18:35', time: '18:15 – 18:35',
+          title: 'Executive Keynote: The Future of Manufacturing in the Age of AI',
+          participants: [{ speakerId: 'omar', name: 'Omar Sjawaldy Anwar', role: 'President Commissioner, BNI (2025-Present); Former Deputy President Director & CEO, Pertamina (2009-2010)' }],
+          sourceRow: 25
+        },
+        {
+          start: '18:35', end: '18:50', time: '18:35 – 18:50',
+          title: 'Intel Presentation',
+          participants: [{ speakerId: 'aldrian', name: 'Aldrian R. Susantio', role: 'Central Asia Pacific Regional Manager Lenovo Account Team, Intel Corporation' }],
+          sourceRow: 26
+        },
+        {
+          start: '18:50', end: '19:25', time: '18:50 – 19:25',
+          title: 'Fireside Chat: From AI Vision to Manufacturing Transformation',
+          participants: [
+            { speakerId: 'ryan', name: 'Ryan Renaldy', role: 'Country Business Manager OEM, Lenovo Indonesia', moderator: true },
+            { speakerId: 'omar', name: 'Omar Sjawaldy Anwar', role: 'President Commissioner, BNI (2025-Present); Former Deputy President Director & CEO, Pertamina (2009-2010)' },
+            { speakerId: 'samuel', name: 'Samuel Tan', role: 'CEO & Cofounder, Auk Industries' },
+            { speakerId: 'naraina', name: 'Naraina Yogas', role: 'CTO, Linknau' }
+          ],
+          sourceRow: 27, sourceRows: [27, 28, 29, 30]
+        },
+        {
+          start: '19:25', end: '19:35', time: '19:25 – 19:35',
+          title: 'Open Discussion & Audience Q&A',
+          participants: [{ name: 'Ryan Renaldy + Panelists', role: '' }], sourceRow: 31
+        },
+        {
+          start: '19:35', end: '19:45', time: '19:35 – 19:45',
+          title: 'Insight Recap, Group Photo & Closing Remarks',
+          participants: [{ speakerId: 'ricky', name: 'Ricky Chan', role: 'Head of Asia Pacific OEM Solutions, Lenovo' }],
+          sourceRow: 32
+        },
+        {
+          start: '19:45', end: '20:25', time: '19:45 – 20:25',
+          title: 'Executive Dinner & Networking',
+          participants: [{ name: 'KIM', role: '' }], sourceRow: 33
+        },
+        {
+          start: '20:25', end: '20:45', time: '20:25 – 20:45',
+          title: 'Stand-up Comedy',
+          participants: [{ speakerId: 'dany', name: 'Dany Beler', role: 'Stand Up Comedy' }],
+          sourceRow: 34
+        },
+        {
+          start: '20:45', end: '20:50', time: '20:45 – 20:50',
+          title: 'Closing & Networking',
+          participants: [{ name: 'KIM', role: '' }], sourceRow: 35
+        }
+      ]
+    }
+  }
+};
