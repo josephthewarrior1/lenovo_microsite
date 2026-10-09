@@ -1,4 +1,4 @@
-# Lenovo OEM Innovation Forum Indonesia 2026
+# OEM Innovation Forum Indonesia
 
 Static, responsive event microsite based on the visual reference at https://lenovotechday.id/id. Two separate routes share the same layout and Indonesian/English copy. Each page follows this order: session banner → Agenda → Speaker with portrait and short biography → Location. There is no overview, countdown, prizes section, registration form, RSVP navigation, registration link, or QR code.
 

@@ -27,6 +27,7 @@ const sessions = {
   }
 };
 const session = sessions[document.body.dataset.session] || sessions.morning;
+const siteName = 'OEM Innovation Forum Indonesia';
 const assetBase = new URL('assets/', document.currentScript.src).href;
 const copy = {
   id:{navAgenda:'Agenda',navSpeakers:'Speaker',navLocation:'Lokasi',agenda:'Agenda',date:'Rabu, 14 Oktober 2026',speakers:'Speaker',invited:'Invited Speaker',bioLabel:'Tentang Pembicara',location:'Lokasi',locationIntro:'Temui kami di The Westin Jakarta.',mapTitle:'Lokasi The Westin Jakarta di Google Maps',directions:'Petunjuk arah'},
@@ -36,8 +37,8 @@ const copy = {
 function renderPage(language){
   const t={...copy[language],...session[`${language}Copy`]};
   document.documentElement.lang=language;
-  document.title=`${session.title} | Lenovo OEM Innovation Forum Indonesia 2026`;
-  document.querySelector('meta[name="description"]').content=`${session.title}. ${t.date}, ${session.time}, The Westin Jakarta. ${t.agendaDescription}`;
+  document.title=siteName;
+  document.querySelector('meta[name="description"]').content=`${siteName} – ${session.title}. ${t.date}, ${session.time}, The Westin Jakarta. ${t.agendaDescription}`;
   document.querySelectorAll('[data-i18n]').forEach(node=>{node.textContent=t[node.dataset.i18n];});
   document.getElementById('hero-title').textContent=session.tagline;
   document.querySelector('.hero-session-label').textContent=session.title;
