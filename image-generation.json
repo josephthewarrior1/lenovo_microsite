@@ -1,0 +1,21 @@
+{
+  "mode": "Built-in image_gen",
+  "assets": [
+    {
+      "file": "dist/assets/lenovo-idea-tab-plus-generated.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "prompt": "Use case: product-mockup. Asset type: high-resolution product image for a website lucky draw prize card. Input image: the attached local Lenovo Idea Tab Plus render is the visual reference and edit target. Primary request: faithfully recreate this exact composition as a clean, crisp, high-definition premium product studio render, correcting low-resolution blur and jagged edges. Keep one silver/grey Lenovo Idea Tab Plus landscape tablet, upright at the same three-quarter angle, in its grey folding folio stand, with the slim matching stylus lying diagonally on the white surface in front. Preserve the screen's large purple and magenta abstract spherical wallpaper, product proportions, thin dark bezel, folio shape, and perspective from the reference. Photorealistic polished aluminium, detailed bevels, clean sharp edges, realistic screen reflections kept subtle. Background pure white (#ffffff), restrained soft grounding shadow only. Center the full product and stylus at approximately 85% of the canvas width, leave even safe margins, no cropping. Landscape image, high resolution 1536×1024 or higher if supported. No labels, captions, watermark, slogans, extra objects or changed accessories."
+    },
+    {
+      "file": "dist/assets/lenovo-motopad-60-lite-generated.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "prompt": "Use case: product-mockup\nAsset type: HD product image for local Lenovo event website prize card.\nPrimary request: Faithfully reconstruct the reference Moto Pad 60 Lite tablet product image in crisp premium studio quality. The supplied reference image is the exact product and composition reference: same front tablet angled with muted blue-grey back tablet behind; dark teal/silver abstract circular screen wallpaper with orange at lower left. Preserve accurate proportions, thin black bezel, perspective, physical design, rear camera module and its placement from the reference. Photorealistic high-detail catalog render.\nScene/backdrop: clean pure white (#ffffff) with soft subtle grounding shadow.\nComposition/framing: landscape image, high resolution at least 1536 × 1024 desired; entire front and back tablets fully visible, centered as a paired composition occupying 85% of frame width with comfortable white margins.\nConstraints: no text, no captions, no extra accessories, no invented prominent logo, no watermark. Keep the tablet models and reference composition faithful while making the image sharp and premium."
+    }
+  ]
+}
