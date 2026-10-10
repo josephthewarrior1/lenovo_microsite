@@ -5,13 +5,13 @@ import { runInNewContext } from 'node:vm';
 const source = await readFile(new URL('./dist/index.html', import.meta.url), 'utf8');
 const script = await readFile(new URL('./dist/event-data.js', import.meta.url), 'utf8');
 const data = runInNewContext(`${script}\n;eventData`, Object.create(null));
-const version = '20261010';
+const version = '20261010-english2';
 const escapeHTML = value => String(value).replace(/[&<>"']/g, character => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
 })[character]);
 
 function renderEntry(session, relativePrefix) {
-  const description = `${data.siteName} – ${session.title}. 14 Oktober 2026, ${session.time}, The Westin Jakarta.`;
+  const description = `${data.siteName} – ${session.title}. 14 October 2026, ${session.time}, The Westin Jakarta.`;
   const bannerDescription = `${data.siteName} – ${session.title}, 14 October 2026, ${session.time}, The Westin Jakarta`;
   return source
     .replace(/(<meta name="description" content=")[^"]*(">)/, `$1${escapeHTML(description)}$2`)
@@ -21,7 +21,7 @@ function renderEntry(session, relativePrefix) {
     .replace(/(<h1 id="hero-title">)[\s\S]*?(<\/h1>)/, `$1${escapeHTML(session.tagline)}$2`)
     .replace(/(<p class="hero-time">)[\s\S]*?(<\/p>)/, `$1${escapeHTML(session.time)}$2`)
     .replace(/(class="hero-banner"[^>]*\balt=")[^"]*(")/, `$1${escapeHTML(bannerDescription)}$2`)
-    .replace(/hero-(?:morning|afternoon)(?:-updated)?\.webp/g, `hero-${session.id}-updated.webp`)
+    .replace(/hero-(?:morning|afternoon)(?:-updated)?\.webp/g, `hero-${session.id}.webp`)
     .replace(/\b(href|src)="(?:\.\.\/)?(assets\/[^\"]+)"/g, (_, attribute, path) => `${attribute}="${relativePrefix}${path}"`)
     .replace(/\b(href|src)="(?:\.\.\/)?(styles\.css|event-data\.js|app\.js)(?:\?[^\"]*)?"/g, (_, attribute, path) => `${attribute}="${relativePrefix}${path}?v=${version}"`);
 }

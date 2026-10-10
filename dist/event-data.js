@@ -9,12 +9,11 @@ const eventData = {
     sonny: {
       id: 'sonny',
       name: 'Dr. Sonny Hendra Sudaryana',
-      role: 'Director of Digital Ecosystem Development, Kementerian Komunikasi dan Digital (KOMDIGI)',
+      role: 'Director of Digital Ecosystem Development, Ministry of Communication and Digital Affairs (KOMDIGI)',
       portrait: 'speaker-sonny-hd.png',
       initials: 'SH',
       bio: {
-        id: 'Dr. Sonny Hendra Sudaryana menjabat sebagai Director of Digital Ecosystem Development di Kementerian Komunikasi dan Digital (KOMDIGI).',
-        en: 'Dr. Sonny Hendra Sudaryana is Director of Digital Ecosystem Development at Kementerian Komunikasi dan Digital (KOMDIGI).'
+        en: 'Dr. Sonny Hendra Sudaryana is Director of Digital Ecosystem Development at the Ministry of Communication and Digital Affairs (KOMDIGI).'
       }
     },
     omar: {
@@ -24,7 +23,6 @@ const eventData = {
       portrait: 'speaker-omar-hd.png',
       initials: 'OA',
       bio: {
-        id: 'Omar Sjawaldy Anwar merupakan President Commissioner di BNI (2025–sekarang) dan sebelumnya menjabat sebagai Deputy President Director & CEO di Pertamina (2009–2010).',
         en: 'Omar Sjawaldy Anwar is President Commissioner of BNI (2025–present) and was Deputy President Director & CEO of Pertamina (2009–2010).'
       }
     },
@@ -35,7 +33,6 @@ const eventData = {
       portrait: null,
       initials: 'RR',
       bio: {
-        id: 'Ryan Renaldy menjabat sebagai Country Business Manager OEM di Lenovo Indonesia.',
         en: 'Ryan Renaldy is Country Business Manager OEM at Lenovo Indonesia.'
       }
     },
@@ -46,7 +43,6 @@ const eventData = {
       portrait: null,
       initials: 'AS',
       bio: {
-        id: 'Aldrian R. Susantio menjabat sebagai Central Asia Pacific Regional Manager Lenovo Account Team di Intel Corporation.',
         en: 'Aldrian R. Susantio is Central Asia Pacific Regional Manager Lenovo Account Team at Intel Corporation.'
       }
     },
@@ -57,7 +53,6 @@ const eventData = {
       portrait: null,
       initials: 'AW',
       bio: {
-        id: 'Azis Wonosari menjabat sebagai Senior Solution Consultant di Lenovo Indonesia.',
         en: 'Azis Wonosari is Senior Solution Consultant at Lenovo Indonesia.'
       }
     },
@@ -68,18 +63,16 @@ const eventData = {
       portrait: null,
       initials: 'IM',
       bio: {
-        id: 'Imam Munajat menjabat sebagai Client Solution Architect (CSA) di Lenovo Indonesia.',
         en: 'Imam Munajat is Client Solution Architect (CSA) at Lenovo Indonesia.'
       }
     },
     andi: {
       id: 'andi',
       name: 'Andi Darma',
-      role: 'Direktur, Next Gen AI',
+      role: 'Director, Next Gen AI',
       portrait: null,
       initials: 'AD',
       bio: {
-        id: 'Andi Darma menjabat sebagai Direktur di Next Gen AI.',
         en: 'Andi Darma is Director at Next Gen AI.'
       }
     },
@@ -90,7 +83,6 @@ const eventData = {
       portrait: 'speaker-samuel.jpg',
       initials: 'ST',
       bio: {
-        id: 'Samuel Tan adalah CEO dan Cofounder Auk Industries, yang mengembangkan kecerdasan industri berbasis data pabrik secara real time untuk mendukung operasi manufaktur. Sebelumnya, ia bekerja sebagai Operations Associate di McKinsey dengan fokus pada lean manufacturing dan rantai pasok. Ia juga pernah mengikuti Operations Management Leadership Program (OMLP) di General Electric.',
         en: 'Samuel Tan is CEO and Cofounder of Auk Industries, which uses industrial intelligence and real-time factory data to support manufacturing operations. He previously worked as an Operations Associate at McKinsey, focusing on lean manufacturing and supply chains, and earlier joined General Electric’s Operations Management Leadership Program (OMLP).'
       }
     },
@@ -101,7 +93,6 @@ const eventData = {
       portrait: null,
       initials: 'RC',
       bio: {
-        id: 'Ricky Chan menjabat sebagai Head of Asia Pacific OEM Solutions di Lenovo.',
         en: 'Ricky Chan is Head of Asia Pacific OEM Solutions at Lenovo.'
       }
     },
@@ -112,7 +103,6 @@ const eventData = {
       portrait: null,
       initials: 'JI',
       bio: {
-        id: 'Joni Irwanto menjabat sebagai Sales Director - Key, Global, and MM Business Account di Lenovo Indonesia.',
         en: 'Joni Irwanto is Sales Director - Key, Global, and MM Business Account at Lenovo Indonesia.'
       }
     },
@@ -123,7 +113,6 @@ const eventData = {
       portrait: null,
       initials: 'NY',
       bio: {
-        id: 'Naraina Yogas menjabat sebagai CTO di Linknau.',
         en: 'Naraina Yogas is CTO at Linknau.'
       }
     },
@@ -134,7 +123,6 @@ const eventData = {
       portrait: null,
       initials: 'DB',
       bio: {
-        id: 'Dany Beler tampil dalam sesi Stand-up Comedy.',
         en: 'Dany Beler appears in the Stand-up Comedy session.'
       }
     }
@@ -144,7 +132,7 @@ const eventData = {
       id: 'morning',
       title: 'ISV Partner Innovation Forum',
       tagline: 'Build what’s next with Lenovo technology.',
-      time: '08:00 – 12:50 WIB',
+      time: '09:00 – 13:00 WIB',
       registration: '08:00 – 09:00 WIB',
       speakerIds: ['sonny', 'ryan', 'aldrian', 'azis', 'imam', 'andi', 'samuel', 'ricky'],
       agenda: [
@@ -167,7 +155,7 @@ const eventData = {
         {
           start: '09:15', end: '09:35', time: '09:15 – 09:35',
           title: 'Government Keynote Speech',
-          participants: [{ speakerId: 'sonny', name: 'Dr. Sonny Hendra Sudaryana', role: 'Director of Digital Ecosystem Development, Kementerian Komunikasi dan Digital (KOMDIGI)' }],
+          participants: [{ speakerId: 'sonny', name: 'Dr. Sonny Hendra Sudaryana', role: 'Director of Digital Ecosystem Development, Ministry of Communication and Digital Affairs (KOMDIGI)' }],
           sourceRow: 8
         },
         {
@@ -197,7 +185,7 @@ const eventData = {
         {
           start: '11:15', end: '11:30', time: '11:15 – 11:30',
           title: 'Showcase 1 - Next Gen AI',
-          participants: [{ speakerId: 'andi', name: 'Andi Darma', role: 'Direktur, Next Gen AI' }],
+          participants: [{ speakerId: 'andi', name: 'Andi Darma', role: 'Director, Next Gen AI' }],
           sourceRow: 13
         },
         {
@@ -223,7 +211,7 @@ const eventData = {
       id: 'afternoon',
       title: 'Customer Leader Circle',
       tagline: 'Shaping the Future of Manufacturing in the Age of AI',
-      time: '17:00 – 20:50 WIB',
+      time: '17:00 – 20:00 WIB',
       registration: '17:00 – 18:00 WIB',
       speakerIds: ['omar', 'joni', 'aldrian', 'ryan', 'samuel', 'naraina', 'ricky', 'dany'],
       agenda: [

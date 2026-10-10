@@ -1,25 +1,22 @@
 const session = eventData.sessions[document.body.dataset.session] || eventData.sessions.morning;
 const assetBase = new URL('assets/', document.currentScript.src).href;
 const copy = {
-  id: {
-    navAgenda: 'Agenda', navSpeakers: 'Speaker', navLocation: 'Lokasi', agenda: 'Agenda',
-    date: 'Rabu, 14 Oktober 2026', speakers: 'Speaker', location: 'Lokasi',
-    locationIntro: 'Temui kami di The Westin Jakarta.',
-    mapTitle: 'Lokasi The Westin Jakarta di Google Maps', directions: 'Petunjuk arah',
-    tentative: 'Tentatif', moderator: 'Moderator', photoSoon: 'Foto segera hadir',
-    bioLabel: 'Tentang pembicara', navigationLabel: 'Navigasi utama',
-    languageLabel: 'Bahasa', skip: 'Lewati ke konten'
-  },
-  en: {
-    navAgenda: 'Agenda', navSpeakers: 'Speaker', navLocation: 'Location', agenda: 'Agenda',
-    date: 'Wednesday, 14 October 2026', speakers: 'Speaker', location: 'Location',
+    navAgenda: 'Agenda', navSpeakers: 'Speakers', navLocation: 'Location', agenda: 'Agenda',
+    date: 'Wednesday, 14 October 2026', speakers: 'Speakers', location: 'Location',
     locationIntro: 'Meet us at The Westin Jakarta.',
     mapTitle: 'The Westin Jakarta on Google Maps', directions: 'Get directions',
     tentative: 'Tentative', moderator: 'Moderator', photoSoon: 'Photo coming soon',
     bioLabel: 'About the speaker', navigationLabel: 'Main navigation',
-    languageLabel: 'Language', skip: 'Skip to content'
-  }
+    skip: 'Skip to content'
 };
+const firstProfileIds = new Map();
+session.agenda.forEach((item, rowIndex) => {
+  item.participants.forEach(participant => {
+    if (participant.speakerId && !firstProfileIds.has(participant.speakerId)) {
+      firstProfileIds.set(participant.speakerId, `agenda-${rowIndex}-${participant.speakerId}`);
+    }
+  });
+});
 const navigationLinks = [...document.querySelectorAll('.nav-link')];
 let navigationSections = [];
 let navigationFrame = 0;
@@ -31,11 +28,30 @@ function escapeHTML(value) {
   })[character]);
 }
 
-function renderParticipant(participant, t) {
+function renderPortrait(speaker, t) {
+  return `<div class="agenda-photo">
+    ${speaker.portrait
+      ? `<div class="portrait portrait--${escapeHTML(speaker.id)}"><img src="${escapeHTML(assetBase + speaker.portrait)}" alt="${escapeHTML(speaker.name)}" loading="lazy" data-speaker-id="${escapeHTML(speaker.id)}"></div>`
+      : `<div class="portrait portrait--placeholder" role="img" aria-label="${escapeHTML(speaker.name + ' – ' + t.photoSoon)}"><span aria-hidden="true">${escapeHTML(speaker.initials)}</span></div>`}
+    <p class="photo-status"${speaker.portrait ? ' hidden' : ''}>${escapeHTML(t.photoSoon)}</p>
+  </div>`;
+}
+
+function renderParticipant(participant, t, rowIndex) {
   const badge = participant.tentative
     ? `<span class="tentative-badge">${escapeHTML(t.tentative)}</span>`
     : participant.moderator
       ? `<span class="moderator-label">${escapeHTML(t.moderator)}</span>` : '';
+  const speaker = eventData.speakers[participant.speakerId];
+  if (speaker) {
+    return `<li class="agenda-participant agenda-participant--profile" id="agenda-${rowIndex}-${escapeHTML(speaker.id)}">
+      ${renderPortrait(speaker, t)}
+      <div class="agenda-profile-copy">
+        <div class="agenda-participant-name"><strong>${escapeHTML(participant.name)}</strong>${badge}</div>
+        <p class="speaker-bio" aria-label="${escapeHTML(t.bioLabel)}">${escapeHTML(speaker.bio.en)}</p>
+      </div>
+    </li>`;
+  }
   return `<li class="agenda-participant">
     <div class="agenda-participant-name"><strong>${escapeHTML(participant.name)}</strong>${badge}</div>
     ${participant.role ? `<p>${escapeHTML(participant.role)}</p>` : ''}
@@ -43,7 +59,7 @@ function renderParticipant(participant, t) {
 }
 
 function renderAgenda(t) {
-  return session.agenda.map(item => `<li class="agenda-row">
+  return session.agenda.map((item, rowIndex) => `<li class="agenda-row">
     <div class="agenda-time" aria-label="${escapeHTML(item.time)} WIB">
       <time datetime="2026-10-14T${escapeHTML(item.start)}:00+07:00">${escapeHTML(item.start)}</time>
       <span aria-hidden="true">–</span>
@@ -52,55 +68,46 @@ function renderAgenda(t) {
     <div class="agenda-content">
       <h3>${escapeHTML(item.title)}</h3>
       <ul class="agenda-participants${item.participants.length > 2 ? ' agenda-participants--panel' : ''}">
-        ${item.participants.map(participant => renderParticipant(participant, t)).join('')}
+        ${item.participants.map(participant => renderParticipant(participant, t, rowIndex)).join('')}
       </ul>
     </div>
   </li>`).join('');
 }
 
-function renderSpeaker(id, language, t) {
+function renderSpeakerLink(id) {
   const speaker = eventData.speakers[id];
-  const photo = speaker.portrait
-    ? `<div class="portrait portrait--${escapeHTML(id)}"><img src="${escapeHTML(assetBase + speaker.portrait)}" alt="${escapeHTML(speaker.name)}" width="874" height="1241" loading="lazy" data-speaker-id="${escapeHTML(id)}"></div>`
-    : `<div class="portrait portrait--placeholder" role="img" aria-label="${escapeHTML(speaker.name + ' – ' + t.photoSoon)}"><span aria-hidden="true">${escapeHTML(speaker.initials)}</span></div>`;
-  return `<article class="speaker-card glass" aria-labelledby="speaker-${escapeHTML(id)}">
-    <h3 id="speaker-${escapeHTML(id)}" class="speaker-name">${escapeHTML(speaker.name)}</h3>
-    ${photo}
-    <p class="photo-status"${speaker.portrait ? ' aria-hidden="true"' : ''}>${speaker.portrait ? '' : escapeHTML(t.photoSoon)}</p>
-    <p class="speaker-bio" aria-label="${escapeHTML(t.bioLabel)}">${escapeHTML(speaker.bio[language])}</p>
-  </article>`;
+  return `<li><a class="speaker-index-link glass" href="#${escapeHTML(firstProfileIds.get(id))}">
+    <span class="speaker-index-name">${escapeHTML(speaker.name)}</span>
+    <span class="speaker-index-role">${escapeHTML(speaker.role)}</span>
+  </a></li>`;
 }
 
-function renderPage(language, preserveScroll = false) {
-  const t = copy[language] || copy.id;
-  const previousSection = preserveScroll ? document.getElementById(activeNavigationId) : null;
-  const previousOffset = previousSection?.getBoundingClientRect().top;
-  document.documentElement.lang = language;
+function renderPage() {
+  const t = copy;
+  document.documentElement.lang = 'en';
   document.title = eventData.siteName;
   document.querySelector('meta[name="description"]').content = `${eventData.siteName} – ${session.title}. ${t.date}, ${session.time}, The Westin Jakarta.`;
   document.querySelectorAll('[data-i18n]').forEach(node => { node.textContent = t[node.dataset.i18n]; });
   document.querySelector('.main-nav').setAttribute('aria-label', t.navigationLabel);
-  document.getElementById('language').setAttribute('aria-label', t.languageLabel);
   document.querySelector('.skip-link').textContent = t.skip;
   document.getElementById('hero-title').textContent = session.tagline;
   document.querySelector('.hero-session-label').textContent = session.title;
   document.querySelector('.hero-time').textContent = session.time;
-  document.querySelector('.flag').classList.toggle('english', language === 'en');
   const banner = document.querySelector('.hero-banner');
-  banner.src = `${assetBase}hero-${session.id}-updated.webp`;
+  banner.src = `${assetBase}hero-${session.id}.webp`;
   banner.alt = `${eventData.siteName} – ${session.title}, ${t.date}, ${session.time}, The Westin Jakarta`;
 
   document.getElementById('event-sections').innerHTML = `
     <section id="agenda" class="agenda-section section-purple" aria-labelledby="agenda-title">
       <div class="container"><div class="agenda-panel glass">
         <h2 id="agenda-title" class="floating-title">${escapeHTML(t.agenda)}</h2>
-        <div class="agenda-heading"><p class="agenda-date">${escapeHTML(t.date)} · The Westin Jakarta</p><p class="agenda-window">${escapeHTML(session.time)}</p></div>
+        <div class="agenda-heading"><p class="agenda-date">${escapeHTML(t.date)} · The Westin Jakarta</p><p class="agenda-window">All times in WIB</p></div>
         <ol class="agenda-list">${renderAgenda(t)}</ol>
       </div></div>
     </section>
     <section id="speakers" class="speakers-section section-purple" aria-labelledby="speakers-title">
       <div class="container"><h2 id="speakers-title" class="section-title">${escapeHTML(t.speakers)}</h2>
-        <div class="speakers-grid">${session.speakerIds.map(id => renderSpeaker(id, language, t)).join('')}</div>
+        <ul class="speaker-index">${session.speakerIds.map(renderSpeakerLink).join('')}</ul>
       </div>
     </section>
     <section id="location" class="location-section section-purple" aria-labelledby="location-title">
@@ -119,17 +126,10 @@ function renderPage(language, preserveScroll = false) {
       portrait.setAttribute('role', 'img');
       portrait.setAttribute('aria-label', `${speaker.name} – ${t.photoSoon}`);
       portrait.innerHTML = `<span aria-hidden="true">${escapeHTML(speaker.initials)}</span>`;
-      const status = portrait.nextElementSibling;
-      status.removeAttribute('aria-hidden');
-      status.textContent = t.photoSoon;
+      portrait.nextElementSibling.hidden = false;
     }, { once: true });
   });
   observeSections();
-  if (previousSection && Number.isFinite(previousOffset)) {
-    const nextSection = document.getElementById(previousSection.id);
-    window.scrollBy({ top: nextSection.getBoundingClientRect().top - previousOffset, behavior: 'instant' });
-    scheduleNavigationUpdate();
-  }
 }
 
 function updateActiveNavigation() {
@@ -169,5 +169,4 @@ window.addEventListener('resize', scheduleNavigationUpdate);
 window.addEventListener('hashchange', scheduleNavigationUpdate);
 window.addEventListener('load', scheduleNavigationUpdate);
 document.fonts.ready.then(scheduleNavigationUpdate);
-document.getElementById('language').addEventListener('change', event => renderPage(event.target.value, true));
-renderPage('id');
+renderPage();

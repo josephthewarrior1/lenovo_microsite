@@ -16,11 +16,6 @@ button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid #fff
 .nav-link{display:flex;align-items:center;padding:0 18px;border-bottom:2px solid transparent;font-size:14px;font-weight:600;text-decoration:none}
 .nav-link.active{border-bottom-color:var(--red)}
 .nav-link:hover{color:#ffe5e7}
-.language-control{position:absolute;right:24px;display:flex;align-items:center;gap:7px;border:1px solid #ffffff29;border-radius:8px;padding:4px 10px}
-.language-control select{border:0;color:white;background:transparent;font-size:14px;cursor:pointer}
-.language-control option{background:var(--purple)}
-.flag{display:block;width:20px;height:12px;border-radius:6px;background:linear-gradient(#ef2334 50%,#fff 50%)}
-.flag.english{background:linear-gradient(0deg,transparent 36%,#fff 36%,#fff 43%,#c8102e 43%,#c8102e 57%,#fff 57%,#fff 64%,transparent 64%),linear-gradient(90deg,#12366b 35%,#fff 35%,#fff 43%,#c8102e 43%,#c8102e 57%,#fff 57%,#fff 65%,#12366b 65%)}
 .hero{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);padding-top:96px;background:linear-gradient(145deg,#433266,#49204f)}
 .hero-visual{position:relative;overflow:hidden;display:flex;align-items:center;background:var(--purple)}
 .hero-banner{display:block;width:100%;height:auto}
@@ -46,24 +41,30 @@ button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid #fff
 .agenda-content{min-width:0}
 .agenda-content h3{font-weight:650;font-size:18px;margin:0 0 13px;line-height:1.5;overflow-wrap:break-word}
 .agenda-participants{display:grid;gap:12px}
-.agenda-participants--panel{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 24px}
+.agenda-participants--panel{gap:24px}
+.agenda-participant--profile{display:grid;grid-template-columns:128px minmax(0,1fr);align-items:center;gap:22px;scroll-margin-top:108px}
+.agenda-profile-copy{min-width:0}
+.agenda-photo{text-align:center;min-width:0}
 .agenda-participant-name{display:flex;align-items:baseline;flex-wrap:wrap;gap:7px 10px;line-height:1.6}
 .agenda-participant strong{font-size:14px;font-weight:600}
 .agenda-participant p{font-size:13px;color:var(--muted);line-height:1.7;margin:3px 0 0;overflow-wrap:break-word}
 .tentative-badge{display:inline-flex;padding:2px 9px;border:1px solid #f5d98f80;border-radius:5px;background:#f3ce6a19;color:#ffe5a4;font-size:11px;line-height:1.6;font-weight:650}
 .moderator-label{font-size:11px;color:#ebccec;font-weight:500}
 .speakers-section{padding:36px 0 60px}
-.speakers-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px;max-width:1000px;margin:auto}
-.speaker-card{min-width:0;padding:30px 30px 27px;display:flex;flex-direction:column;align-items:center;text-align:center}
-.speaker-name{min-height:3em;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:750;line-height:1.5;margin:0;width:100%;overflow-wrap:break-word}
-.portrait{width:220px;height:220px;flex-shrink:0;border-radius:50%;overflow:hidden;background:#fff;border:2px solid #fff;margin:18px auto 10px;display:flex;justify-content:center;align-items:flex-end}
+.speaker-index{list-style:none;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;max-width:1000px;margin:auto}
+.speaker-index li{min-width:0;display:flex}
+.speaker-index-link{display:flex;flex-direction:column;gap:7px;width:100%;padding:20px 24px;text-decoration:none;transition:background .2s}
+.speaker-index-link:hover{background:#ffffff20}
+.speaker-index-name{font-size:16px;font-weight:650;line-height:1.5}
+.speaker-index-role{font-size:12px;line-height:1.7;color:var(--muted)}
+.portrait{width:128px;height:128px;flex-shrink:0;border-radius:50%;overflow:hidden;background:#fff;border:2px solid #fff;margin:0 auto;display:flex;justify-content:center;align-items:flex-end}
 .portrait img{width:100%;height:100%;max-width:100%;background:#fff;object-fit:cover;object-position:50% 10%;transform:translateX(-3.2%)}
 .portrait--omar img{object-position:50% 0%;transform:translateX(-9.8%)}
 .portrait--samuel img{object-position:50% 50%;transform:none}
 .portrait--placeholder{align-items:center;color:var(--purple)}
-.portrait--placeholder span{font-size:65px;font-weight:650;letter-spacing:1px;line-height:1}
-.photo-status{min-height:24px;font-size:12px;line-height:2;color:var(--muted);margin:0 0 16px}
-.speaker-bio{font-size:14px;line-height:1.8;color:#f2e5f4;margin:0;max-width:46ch}
+.portrait--placeholder span{font-size:38px;font-weight:650;letter-spacing:1px;line-height:1}
+.agenda-participant .photo-status{font-size:10px;line-height:1.5;color:var(--muted);margin:8px 0 0}
+.agenda-participant .speaker-bio{font-size:13px;line-height:1.8;color:#f2e5f4;margin:6px 0 0;max-width:65ch}
 .location-section{padding:40px 0 65px;text-align:center}
 .section-subtitle{text-align:center;font-size:16px;margin:-19px auto 30px;color:var(--muted)}
 .location-info strong{font-size:22px;font-weight:650}
@@ -77,14 +78,12 @@ button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid #fff
   .site-header{width:92%}.main-nav{gap:5px}.nav-link{padding:0 14px}
   .hero-copy{padding:32px 35px}.hero h1{font-size:36px}.hero-date{font-size:14px}.hero-time{font-size:18px}
   .agenda-panel{padding-left:26px;padding-right:26px}.agenda-row{grid-template-columns:155px minmax(0,1fr);gap:18px}
-  .speakers-grid{gap:24px}.speaker-card{padding:26px 24px}.speaker-name{font-size:20px}
+  .agenda-participant--profile{grid-template-columns:112px minmax(0,1fr);gap:18px}.portrait{width:112px;height:112px}
 }
-@media(max-width:700px){.agenda-participants--panel{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:650px){
   html{scroll-padding-top:88px}
   .site-header{top:10px;height:54px;width:calc(100% - 24px);padding:0 8px;gap:0;border-radius:12px;justify-content:flex-start}
-  .main-nav{gap:0;width:calc(100% - 59px)}.nav-link{font-size:11px;padding:0 7px;flex:1;justify-content:center}
-  .language-control{right:8px;gap:3px;padding:2px 4px}.language-control select{font-size:11px;width:36px}.flag{width:15px;height:9px}
+  .main-nav{gap:0;width:100%}.nav-link{font-size:12px;padding:0 7px;flex:1;justify-content:center}
   .hero{padding-top:80px;grid-template-columns:minmax(0,1fr)}.hero-copy{padding:28px 26px 45px}
   .hero-session-label{font-size:13px;margin-bottom:12px}.hero h1{font-size:30px;line-height:1.22;margin-bottom:20px}
   .hero-date{font-size:14px}.hero-time{font-size:19px;margin-bottom:16px}.hero-hashtag{font-size:14px}
@@ -93,12 +92,14 @@ button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid #fff
   .agenda-heading{margin-bottom:22px}.agenda-date{font-size:12px;line-height:1.8}.agenda-window{font-size:15px}
   .agenda-row{grid-template-columns:minmax(0,1fr);gap:12px;padding:23px 0}.agenda-time{font-size:14px;color:#f0cfea}
   .agenda-content h3{font-size:17px;margin-bottom:11px}.agenda-participant strong{font-size:14px}.agenda-participant p{font-size:12px}
-  .speakers-section{padding:25px 0 35px}.speakers-grid{grid-template-columns:minmax(0,1fr);gap:20px;max-width:420px}
-  .speaker-card{padding:25px 24px}.speaker-name{min-height:0;font-size:21px}.portrait{width:200px;height:200px;margin-top:22px}
-  .portrait--placeholder span{font-size:60px}.speaker-bio{font-size:14px}
+  .agenda-participant--profile{grid-template-columns:minmax(0,1fr);gap:16px;scroll-margin-top:88px}.agenda-photo{justify-self:start}
+  .portrait{width:140px;height:140px}.portrait--placeholder span{font-size:42px}
+  .agenda-participant .speaker-bio{font-size:13px}
+  .speakers-section{padding:25px 0 35px}.speaker-index{grid-template-columns:minmax(0,1fr);gap:12px}
+  .speaker-index-link{padding:18px 20px}.speaker-index-name{font-size:15px}
   .location-section{padding:30px 0 40px}.section-subtitle{font-size:14px;margin:-10px auto 23px}
   .location-info strong{font-size:21px}.location-info p{font-size:14px}.map-frame{padding:7px;border-radius:13px}
   .map-frame iframe{height:300px;border-radius:7px}.directions-button{font-size:15px;padding:12px 26px}
 }
-@media(max-width:360px){.nav-link{min-width:0;font-size:9.5px;padding:0 3px}.hero h1{font-size:28px}.speaker-card{padding-left:18px;padding-right:18px}.agenda-panel{padding-left:16px;padding-right:16px}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.directions-button{transition:none}}
+@media(max-width:360px){.nav-link{min-width:0;font-size:11px;padding:0 3px}.hero h1{font-size:28px}.agenda-panel{padding-left:16px;padding-right:16px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.directions-button,.speaker-index-link{transition:none}}
