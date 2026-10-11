@@ -5,7 +5,7 @@ import { runInNewContext } from 'node:vm';
 const source = await readFile(new URL('./dist/index.html', import.meta.url), 'utf8');
 const script = await readFile(new URL('./dist/event-data.js', import.meta.url), 'utf8');
 const data = runInNewContext(`${script}\n;eventData`, Object.create(null));
-const version = '20261011-roles1';
+const version = '20261011-profile1';
 const escapeHTML = value => String(value).replace(/[&<>"']/g, character => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
 })[character]);

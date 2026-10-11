@@ -11,6 +11,7 @@ const eventData = {
       id: 'varin',
       name: 'Varin Derjit Singh',
       role: 'President Director, Lenovo Indonesia',
+      affiliations: [{ jobTitle: 'President Director', company: 'Lenovo Indonesia' }],
       portrait: 'speaker-varin-20261011.png',
       initials: 'VS',
       bio: {
@@ -21,6 +22,7 @@ const eventData = {
       id: 'sonny',
       name: 'Dr. Sonny Hendra Sudaryana',
       role: 'Director of Digital Ecosystem Development, Ministry of Communication and Digital Affairs (KOMDIGI)',
+      affiliations: [{ jobTitle: 'Director of Digital Ecosystem Development', company: 'Ministry of Communication and Digital Affairs (KOMDIGI)' }],
       portrait: 'speaker-sonny-20261011.png',
       initials: 'SH',
       bio: {
@@ -31,6 +33,10 @@ const eventData = {
       id: 'omar',
       name: 'Omar Sjawaldy Anwar',
       role: 'President Commissioner, BNI (2025-Present); Former Deputy President Director & CEO, Pertamina (2009-2010)',
+      affiliations: [
+        { jobTitle: 'President Commissioner', company: 'BNI (2025–Present)' },
+        { jobTitle: 'Former Deputy President Director & CEO', company: 'Pertamina (2009–2010)' }
+      ],
       portrait: 'speaker-omar-20261011.png',
       initials: 'OA',
       bio: {
@@ -41,6 +47,7 @@ const eventData = {
       id: 'ryan',
       name: 'Ryan Renaldy',
       role: 'Country Business Manager OEM, Lenovo Indonesia',
+      affiliations: [{ jobTitle: 'Country Business Manager OEM', company: 'Lenovo Indonesia' }],
       portrait: 'speaker-ryan-20261011.png',
       initials: 'RR',
       bio: {
@@ -51,6 +58,7 @@ const eventData = {
       id: 'aldrian',
       name: 'Aldrian R. Susantio',
       role: 'Central Asia Pacific Regional Manager Lenovo Account Team, Intel Corporation',
+      affiliations: [{ jobTitle: 'Central Asia Pacific Regional Manager Lenovo Account Team', company: 'Intel Corporation' }],
       portrait: 'speaker-aldrian-20261011.png',
       initials: 'AS',
       bio: {
@@ -61,6 +69,7 @@ const eventData = {
       id: 'azis',
       name: 'Azis Wonosari',
       role: 'Senior Solution Consultant, Lenovo Indonesia',
+      affiliations: [{ jobTitle: 'Senior Solution Consultant', company: 'Lenovo Indonesia' }],
       portrait: 'speaker-azis-20261011.png',
       initials: 'AW',
       bio: {
@@ -71,6 +80,7 @@ const eventData = {
       id: 'imam',
       name: 'Imam Munajat',
       role: 'Client Solution Architect (CSA), Lenovo Indonesia',
+      affiliations: [{ jobTitle: 'Client Solution Architect (CSA)', company: 'Lenovo Indonesia' }],
       portrait: 'speaker-imam-20261011.png',
       initials: 'IM',
       bio: {
@@ -81,6 +91,7 @@ const eventData = {
       id: 'andi',
       name: 'Andi Darma',
       role: 'Director, Next Gen AI',
+      affiliations: [{ jobTitle: 'Director', company: 'Next Gen AI' }],
       portrait: 'speaker-andi-20261011.png',
       initials: 'AD',
       bio: {
@@ -91,16 +102,27 @@ const eventData = {
       id: 'samuel',
       name: 'Samuel Tan',
       role: 'CEO & Cofounder, Auk Industries',
+      affiliations: [{ jobTitle: 'CEO & Cofounder', company: 'Auk Industries' }],
       portrait: 'speaker-samuel-20261011.png',
       initials: 'ST',
       bio: {
         en: 'Samuel Tan is CEO and Cofounder of Auk Industries, which uses industrial intelligence and real-time factory data to support manufacturing operations. He previously worked as an Operations Associate at McKinsey, focusing on lean manufacturing and supply chains, and earlier joined General Electric’s Operations Management Leadership Program (OMLP).'
+      },
+      profile: {
+        paragraphs: [
+          'Samuel Tan is the CEO & Cofounder of Auk.Industries, an Industrial Intelligence deep technology company which provides Internet-of-Things technologies for industrial applications to stream and analyze operational data real-time, generating powerful, actionable insights.',
+          'He was a former Associate in the Operations Practice at McKinsey. As a management consultant, he has worked primarily in the areas of lean manufacturing and supply chain and served clients from various sectors including ICT, semiconductors, O&G/chemical, FMCG, hospitality, logistics, utilities and public transportation. Particularly, he has worked in projects leading workstreams to achieve more than 20% gain in OEE and labor productivity, more than 40% reduction in machine downtime due to setup/changeovers, improved supplier network operations for client, designed and implemented recovery/turnaround for public transport company, supported deep dive diagnostics in various operations, and contributed to the design and planning of the Industry 4.0 factory-of-the-future joint lab with Singapore research agencies and industry partners.',
+          'Prior to joining McKinsey, Samuel worked for General Electric Aviation (GE) as an Operations Lead in charge of a cross-functional task force addressing critical HPC vane sector crisis affecting new engine build for Boeing 777 aircraft. He was part of the Operations Management Leadership Program (OMLP) that allows members to build leadership and functional skills through challenging rotational assignments and world-class training. He also had an entrepreneurial stint working in a startup on biofuel technologies, where he designed and developed a micro-refinery for onsite power generation at Marina Bay Financial Centre, Singapore.',
+          'Concurrently, he serves the Singapore Armed Forces as Officer Commanding (OC) of a combat engineer unit as part of Military Service. Samuel holds a Bachelor degree (1st Cl.) from National University of Singapore (NUS) with Double Majors in Engineering & Business.'
+        ],
+        email: 'samuel.tan@auk.industries'
       }
     },
     ricky: {
       id: 'ricky',
       name: 'Ricky Chan',
       role: 'Head of Asia Pacific OEM Solutions, Lenovo',
+      affiliations: [{ jobTitle: 'Head of Asia Pacific OEM Solutions', company: 'Lenovo' }],
       portrait: 'speaker-ricky-20261011.png',
       initials: 'RC',
       bio: {
@@ -111,6 +133,7 @@ const eventData = {
       id: 'joni',
       name: 'Joni Irwanto',
       role: 'Sales Director - Key, Global, and MM Business Account, Lenovo Indonesia',
+      affiliations: [{ jobTitle: 'Sales Director - Key, Global, and MM Business Account', company: 'Lenovo Indonesia' }],
       portrait: 'speaker-joni-20261011.png',
       initials: 'JI',
       bio: {
@@ -121,6 +144,7 @@ const eventData = {
       id: 'naraina',
       name: 'Naraina Yogas',
       role: 'CTO, Linknau',
+      affiliations: [{ jobTitle: 'CTO', company: 'Linknau' }],
       portrait: 'speaker-naraina-20261011.png',
       initials: 'NY',
       bio: {
@@ -131,6 +155,7 @@ const eventData = {
       id: 'dany',
       name: 'Dany Beler',
       role: 'Stand Up Comedy',
+      affiliations: [{ jobTitle: 'Stand Up Comedy', company: '' }],
       portrait: 'speaker-dany-20261011.png',
       initials: 'DB',
       bio: {

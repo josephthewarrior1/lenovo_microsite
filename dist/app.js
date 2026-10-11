@@ -6,7 +6,8 @@ const copy = {
     locationIntro: 'Meet us at',
     mapTitle: 'The Westin Jakarta on Google Maps', directions: 'Get directions',
     tentative: 'Tentative', moderator: 'Moderator', photoSoon: 'Photo coming soon',
-    roleLabel: 'Title and company', navigationLabel: 'Main navigation',
+    viewProfile: 'View Profile', closeProfile: 'Close profile', contact: 'Contact',
+    navigationLabel: 'Main navigation',
     skip: 'Skip to content'
 };
 const navigationLinks = [...document.querySelectorAll('.nav-link')];
@@ -29,6 +30,29 @@ function renderPortrait(speaker, t) {
   </div>`;
 }
 
+function renderAffiliations(speaker) {
+  const affiliations = speaker.affiliations || [{ jobTitle: speaker.role, company: '' }];
+  return affiliations.map(affiliation => `<div class="speaker-affiliation">
+    <p class="speaker-job-title">${escapeHTML(affiliation.jobTitle)}</p>
+    ${affiliation.company ? `<p class="speaker-company">${escapeHTML(affiliation.company)}</p>` : ''}
+  </div>`).join('');
+}
+
+function openSpeakerProfile(speaker, t) {
+  const dialog = document.getElementById('speaker-profile-dialog');
+  dialog.innerHTML = `<div class="speaker-profile-header">
+    <h2 id="speaker-profile-name">${escapeHTML(speaker.name)}</h2>
+    <button type="button" class="profile-close" aria-label="${escapeHTML(t.closeProfile)}" autofocus><span aria-hidden="true">×</span></button>
+  </div>
+  <div class="speaker-profile-affiliations">${renderAffiliations(speaker)}</div>
+  <div class="speaker-profile-biography">${speaker.profile.paragraphs.map(paragraph => `<p>${escapeHTML(paragraph)}</p>`).join('')}</div>
+  ${speaker.profile.email ? `<p class="speaker-profile-contact">${escapeHTML(t.contact)}: <a href="mailto:${escapeHTML(speaker.profile.email)}">${escapeHTML(speaker.profile.email)}</a></p>` : ''}`;
+  dialog.querySelector('.profile-close').addEventListener('click', () => dialog.close());
+  document.body.classList.add('profile-open');
+  dialog.showModal();
+  dialog.scrollTop = 0;
+}
+
 function renderParticipant(participant, t, rowIndex) {
   const badge = participant.tentative
     ? `<span class="tentative-badge">${escapeHTML(t.tentative)}</span>`
@@ -39,8 +63,9 @@ function renderParticipant(participant, t, rowIndex) {
     return `<li class="agenda-participant agenda-participant--profile" id="agenda-${rowIndex}-${escapeHTML(speaker.id)}">
       ${renderPortrait(speaker, t)}
       <div class="agenda-profile-copy">
-        <div class="agenda-participant-name"><strong>${escapeHTML(participant.name)}</strong>${badge}</div>
-        <p class="speaker-role" aria-label="${escapeHTML(t.roleLabel)}">${escapeHTML(speaker.role)}</p>
+        <div class="agenda-participant-name"><strong class="speaker-name">${escapeHTML(participant.name)}</strong>${badge}</div>
+        ${renderAffiliations(speaker)}
+        ${speaker.profile?.paragraphs?.length ? `<button type="button" class="view-profile" data-profile-speaker="${escapeHTML(speaker.id)}" aria-label="${escapeHTML(t.viewProfile + ': ' + speaker.name)}" aria-haspopup="dialog" aria-controls="speaker-profile-dialog">${escapeHTML(t.viewProfile)}</button>` : ''}
       </div>
     </li>`;
   }
@@ -100,7 +125,19 @@ function renderPage() {
         <div class="map-frame glass"><iframe title="${escapeHTML(t.mapTitle)}" src="https://maps.google.com/maps?q=The%20Westin%20Jakarta%20Jl.%20H.R.%20Rasuna%20Said%20Blok%20C%20No.22A&z=16&output=embed" width="1180" height="370" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
         <a class="directions-button" href="https://www.google.com/maps/dir/?api=1&destination=The+Westin+Jakarta+Jl.+H.R.+Rasuna+Said+Blok+C+No.22A" target="_blank" rel="noopener noreferrer">${escapeHTML(t.directions)}</a>
       </div>
-    </section>`;
+    </section>
+    <dialog id="speaker-profile-dialog" class="speaker-profile-dialog" aria-labelledby="speaker-profile-name"></dialog>`;
+
+  const profileDialog = document.getElementById('speaker-profile-dialog');
+  profileDialog.addEventListener('close', () => document.body.classList.remove('profile-open'));
+  profileDialog.addEventListener('click', event => {
+    if (event.target !== profileDialog) return;
+    const bounds = profileDialog.getBoundingClientRect();
+    if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) profileDialog.close();
+  });
+  document.querySelectorAll('[data-profile-speaker]').forEach(button => {
+    button.addEventListener('click', () => openSpeakerProfile(eventData.speakers[button.dataset.profileSpeaker], t));
+  });
 
   document.querySelectorAll('img[data-speaker-id]').forEach(image => {
     image.addEventListener('error', () => {

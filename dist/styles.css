@@ -30,7 +30,8 @@ button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid #fff
 .section-title{margin:0 0 24px;font-size:28px;font-weight:750;line-height:1.25;letter-spacing:.02em}
 .agenda-section{padding:60px 0 62px;background:var(--pale-purple);color:var(--ink);--muted:var(--ink);text-align:left}
 .agenda-panel{max-width:1000px;margin:0 auto}
-.agenda-heading{text-align:left;margin-bottom:28px}
+.agenda-section .section-title,.agenda-heading{text-align:center}
+.agenda-heading{margin-bottom:28px}
 .agenda-date,.agenda-venue{font-size:14px;margin-bottom:5px}
 .agenda-window{font-size:16px;font-weight:650;font-variant-numeric:tabular-nums;margin-bottom:0}
 .agenda-list,.agenda-participants{list-style:none;padding:0;margin:0}
@@ -59,7 +60,24 @@ button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid #fff
 .portrait--placeholder{align-items:center;color:var(--purple)}
 .portrait--placeholder span{font-size:38px;font-weight:650;letter-spacing:1px;line-height:1}
 .agenda-participant .photo-status{font-size:10px;line-height:1.5;color:var(--muted);margin:8px 0 0}
-.agenda-participant .speaker-role{font-size:13px;line-height:1.8;color:var(--ink);margin:6px 0 0;max-width:65ch}
+.agenda-participant .speaker-name{font-size:15px;font-weight:700}
+.speaker-job-title,.agenda-participant .speaker-job-title{font-size:14px;font-weight:400;line-height:1.6;color:var(--ink);margin:4px 0 0}
+.speaker-company,.agenda-participant .speaker-company{font-size:13px;font-weight:700;line-height:1.6;color:var(--ink);margin:2px 0 0}
+.speaker-affiliation + .speaker-affiliation{margin-top:8px}
+.view-profile{display:inline-block;padding:0;border:0;background:none;color:var(--purple);font-size:13px;font-weight:600;line-height:1.8;text-decoration:underline;text-underline-offset:3px;margin-top:10px;cursor:pointer}
+.view-profile:hover{color:var(--ink)}
+.view-profile:focus-visible,.speaker-profile-dialog button:focus-visible,.speaker-profile-dialog a:focus-visible{outline-color:var(--purple);outline-offset:4px}
+body.profile-open{overflow:hidden}
+.speaker-profile-dialog{width:min(760px,calc(100% - 32px));max-height:85vh;max-height:85dvh;padding:32px;border:0;border-radius:16px;background:var(--white);color:var(--ink);overflow:auto;box-shadow:0 18px 80px #1e001340}
+.speaker-profile-dialog::backdrop{background:#1e001399}
+.speaker-profile-header{display:flex;align-items:flex-start;justify-content:space-between;gap:20px}
+.speaker-profile-header h2{font-size:24px;line-height:1.4;margin:0;font-weight:700}
+.profile-close{display:flex;align-items:center;justify-content:center;flex-shrink:0;width:36px;height:36px;padding:0;border:0;border-radius:50%;background:var(--pale-purple);color:var(--purple);font-size:28px;line-height:1;cursor:pointer}
+.speaker-profile-affiliations{margin-top:8px}
+.speaker-profile-biography{margin-top:24px}
+.speaker-profile-biography p,.speaker-profile-contact{font-size:14px;line-height:1.8;margin:0 0 18px;overflow-wrap:break-word}
+.speaker-profile-contact{margin-bottom:0}
+.speaker-profile-contact a{color:var(--purple);text-underline-offset:3px}
 .location-section{padding:60px 0 65px;text-align:center;color:var(--white);background:var(--purple) url('assets/location-bg-20261011.png') center/cover no-repeat}
 .location-section .section-title{margin-bottom:22px}
 .section-subtitle{text-align:center;font-size:16px;margin:0 auto 6px;color:var(--white)}
@@ -89,7 +107,7 @@ button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid #fff
   .agenda-content h3{font-size:17px;margin-bottom:11px}.agenda-participant strong{font-size:14px}.agenda-participant p{font-size:12px}
   .agenda-participant--profile{grid-template-columns:minmax(0,1fr);gap:16px;scroll-margin-top:88px}.agenda-photo{justify-self:start}
   .portrait{width:140px;height:140px}.portrait--placeholder span{font-size:42px}
-  .agenda-participant .speaker-role{font-size:13px}
+  .speaker-profile-dialog{padding:24px}.speaker-profile-header h2{font-size:21px}
   .location-section{padding:38px 0 40px}.section-subtitle{font-size:14px}
   .location-info strong{font-size:21px}.location-info p{font-size:14px}.map-frame{padding:7px;border-radius:13px}
   .map-frame iframe{height:300px;border-radius:7px}.directions-button{font-size:15px;padding:12px 26px}
