@@ -51,7 +51,11 @@ function renderParticipant(participant, t, rowIndex) {
 }
 
 function renderAgenda(t) {
-  return session.agenda.map((item, rowIndex) => `<li class="agenda-row">
+  return session.agenda.map((item, rowIndex) => {
+    const participants = item.participants.filter(participant =>
+      participant.speakerId || participant.role || !['KIM', 'MC'].includes(participant.name)
+    );
+    return `<li class="agenda-row${participants.length ? '' : ' agenda-row--activity'}">
     <div class="agenda-time" aria-label="${escapeHTML(item.time)} WIB">
       <time datetime="2026-10-14T${escapeHTML(item.start)}:00+07:00">${escapeHTML(item.start)}</time>
       <span aria-hidden="true">–</span>
@@ -59,11 +63,12 @@ function renderAgenda(t) {
     </div>
     <div class="agenda-content">
       <h3>${escapeHTML(item.title)}</h3>
-      <ul class="agenda-participants${item.participants.length > 2 ? ' agenda-participants--panel' : ''}">
-        ${item.participants.map(participant => renderParticipant(participant, t, rowIndex)).join('')}
-      </ul>
+      ${participants.length ? `<ul class="agenda-participants${participants.length > 2 ? ' agenda-participants--panel' : ''}">
+        ${participants.map(participant => renderParticipant(participant, t, rowIndex)).join('')}
+      </ul>` : ''}
     </div>
-  </li>`).join('');
+  </li>`;
+  }).join('');
 }
 
 function renderPage() {

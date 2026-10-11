@@ -16,10 +16,10 @@ button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid #fff
 .nav-link{display:flex;align-items:center;padding:0 18px;border-bottom:2px solid transparent;font-size:14px;font-weight:600;text-decoration:none}
 .nav-link.active{border-bottom-color:var(--red)}
 .nav-link:hover{color:#ffe5e7}
-.hero{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);padding-top:96px;background:linear-gradient(145deg,#433266,#49204f)}
+.hero{position:relative;display:grid;grid-template-columns:minmax(0,1fr);padding-top:96px;background:linear-gradient(145deg,#433266,#49204f)}
 .hero-visual{position:relative;overflow:hidden;display:flex;align-items:center;background:var(--purple)}
 .hero-banner{display:block;width:100%;height:auto}
-.hero-copy{min-width:0;padding:40px 72px 54px 40px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
+.hero-copy{min-width:0;width:min(1180px,calc(100% - 48px));margin:0 auto;padding:40px 0 54px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
 .hero-session-label{font-size:14px;line-height:1.6;font-weight:650;color:#f0cae9;margin-bottom:18px}
 .hero h1{font-size:clamp(36px,3.2vw,50px);line-height:1.24;letter-spacing:-.6px;font-weight:750;margin-bottom:22px}
 .hero-date{font-size:16px;font-weight:500;margin-bottom:4px;color:var(--muted)}
@@ -40,6 +40,9 @@ button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid #fff
 .agenda-time{display:flex;align-items:baseline;justify-content:flex-start;gap:7px;font-size:15px;line-height:1.6;white-space:nowrap;font-weight:650;font-variant-numeric:tabular-nums;color:#fff}
 .agenda-content{min-width:0}
 .agenda-content h3{font-weight:650;font-size:18px;margin:0 0 13px;line-height:1.5;overflow-wrap:break-word}
+.agenda-row--activity{align-items:center}
+.agenda-row--activity .agenda-content{text-align:center}
+.agenda-row--activity .agenda-content h3{margin:0}
 .agenda-participants{display:grid;gap:12px}
 .agenda-participants--panel{gap:24px}
 .agenda-participant--profile{display:grid;grid-template-columns:128px minmax(0,1fr);align-items:center;gap:22px;scroll-margin-top:108px}
@@ -52,6 +55,9 @@ button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid #fff
 .moderator-label{font-size:11px;color:#ebccec;font-weight:500}
 .portrait{width:128px;height:128px;flex-shrink:0;border-radius:50%;overflow:hidden;background:#fff;border:2px solid #fff;margin:0 auto;display:flex;justify-content:center;align-items:flex-end}
 .portrait img{width:100%;height:100%;max-width:100%;background:#fff;object-fit:cover;object-position:50% 0%}
+.portrait--sonny img{transform:translateX(-2%)}
+.portrait--omar img{transform:translateX(-7%)}
+.portrait--naraina img{transform:translateX(4%)}
 .portrait--placeholder{align-items:center;color:var(--purple)}
 .portrait--placeholder span{font-size:38px;font-weight:650;letter-spacing:1px;line-height:1}
 .agenda-participant .photo-status{font-size:10px;line-height:1.5;color:var(--muted);margin:8px 0 0}
@@ -64,10 +70,9 @@ button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid #fff
 .map-frame iframe{display:block;width:100%;height:370px;border:0;border-radius:10px;background:#dfdce4}
 .directions-button{display:inline-block;background:var(--red);font-size:17px;font-weight:600;text-decoration:none;padding:14px 32px;border-radius:10px;margin-top:24px;box-shadow:0 3px 6px #280f2820;transition:background .2s}
 .directions-button:hover{background:#c91420}
-@media(min-width:1600px){.hero-copy{padding-left:40px}}
 @media(max-width:1000px){
   .site-header{width:92%}.main-nav{gap:5px}.nav-link{padding:0 14px}
-  .hero-copy{padding:32px 35px}.hero h1{font-size:36px}.hero-date{font-size:14px}.hero-time{font-size:18px}
+  .hero-copy{padding:32px 0}.hero h1{font-size:36px}.hero-date{font-size:14px}.hero-time{font-size:18px}
   .agenda-panel{padding-left:26px;padding-right:26px}.agenda-row{grid-template-columns:155px minmax(0,1fr);gap:18px}
   .agenda-participant--profile{grid-template-columns:112px minmax(0,1fr);gap:18px}.portrait{width:112px;height:112px}
 }
@@ -75,13 +80,14 @@ button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid #fff
   html{scroll-padding-top:88px}
   .site-header{top:10px;height:54px;width:calc(100% - 24px);padding:0 8px;gap:0;border-radius:12px;justify-content:flex-start}
   .main-nav{gap:0;width:100%}.nav-link{font-size:12px;padding:0 7px;flex:1;justify-content:center}
-  .hero{padding-top:80px;grid-template-columns:minmax(0,1fr)}.hero-copy{padding:28px 26px 45px}
+  .hero{padding-top:80px}.hero-copy{width:100%;padding:28px 26px 45px}
   .hero-session-label{font-size:13px;margin-bottom:12px}.hero h1{font-size:30px;line-height:1.22;margin-bottom:20px}
   .hero-date{font-size:14px}.hero-time{font-size:19px;margin-bottom:16px}.hero-hashtag{font-size:14px}
   .container{width:calc(100% - 32px)}.section-title{font-size:20px;padding:14px 24px;margin-bottom:26px}
   .agenda-section{padding:45px 0}.agenda-panel{padding:45px 20px 7px}.floating-title{font-size:20px;padding:13px 25px}
   .agenda-heading{margin-bottom:22px}.agenda-date{font-size:12px;line-height:1.8}.agenda-window{font-size:15px}
   .agenda-row{grid-template-columns:minmax(0,1fr);gap:12px;padding:23px 0}.agenda-time{font-size:14px;color:#f0cfea}
+  .agenda-row--activity .agenda-time{justify-content:center}
   .agenda-content h3{font-size:17px;margin-bottom:11px}.agenda-participant strong{font-size:14px}.agenda-participant p{font-size:12px}
   .agenda-participant--profile{grid-template-columns:minmax(0,1fr);gap:16px;scroll-margin-top:88px}.agenda-photo{justify-self:start}
   .portrait{width:140px;height:140px}.portrait--placeholder span{font-size:42px}
