@@ -34,8 +34,8 @@ const eventData = {
       name: 'Omar Sjawaldy Anwar',
       role: 'President Commissioner, BNI (2025-Present); Former Deputy President Director & CEO, Pertamina (2009-2010)',
       affiliations: [
-        { jobTitle: 'President Commissioner', company: 'BNI (2025–Present)' },
-        { jobTitle: 'Former Deputy President Director & CEO', company: 'Pertamina (2009–2010)' }
+        { jobTitle: 'President Commissioner', company: 'BNI', period: '2025-Present' },
+        { jobTitle: 'Former Deputy President Director & CEO', company: 'Pertamina', period: '2009-2010' }
       ],
       portrait: 'speaker-omar-20261011.png',
       initials: 'OA',

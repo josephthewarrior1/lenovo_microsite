@@ -33,8 +33,9 @@ function renderPortrait(speaker, t) {
 function renderAffiliations(speaker) {
   const affiliations = speaker.affiliations || [{ jobTitle: speaker.role, company: '' }];
   return affiliations.map(affiliation => `<div class="speaker-affiliation">
-    <p class="speaker-job-title">${escapeHTML(affiliation.jobTitle)}</p>
-    ${affiliation.company ? `<p class="speaker-company">${escapeHTML(affiliation.company)}</p>` : ''}
+    ${affiliation.period
+      ? `<p class="speaker-job-title">${escapeHTML(affiliation.jobTitle)}, <strong class="speaker-company">${escapeHTML(affiliation.company)}</strong> (${escapeHTML(affiliation.period)})</p>`
+      : `<p class="speaker-job-title">${escapeHTML(affiliation.jobTitle)}</p>${affiliation.company ? `<p class="speaker-company">${escapeHTML(affiliation.company)}</p>` : ''}`}
   </div>`).join('');
 }
 
