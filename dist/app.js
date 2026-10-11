@@ -1,22 +1,14 @@
 const session = eventData.sessions[document.body.dataset.session] || eventData.sessions.morning;
 const assetBase = new URL('assets/', document.currentScript.src).href;
 const copy = {
-    navAgenda: 'Agenda', navSpeakers: 'Speakers', navLocation: 'Location', agenda: 'Agenda',
-    date: 'Wednesday, 14 October 2026', speakers: 'Speakers', location: 'Location',
+    navAgenda: 'Agenda', navLocation: 'Location', agenda: 'Agenda',
+    date: 'Wednesday, 14 October 2026', location: 'Location',
     locationIntro: 'Meet us at The Westin Jakarta.',
     mapTitle: 'The Westin Jakarta on Google Maps', directions: 'Get directions',
     tentative: 'Tentative', moderator: 'Moderator', photoSoon: 'Photo coming soon',
     bioLabel: 'About the speaker', navigationLabel: 'Main navigation',
     skip: 'Skip to content'
 };
-const firstProfileIds = new Map();
-session.agenda.forEach((item, rowIndex) => {
-  item.participants.forEach(participant => {
-    if (participant.speakerId && !firstProfileIds.has(participant.speakerId)) {
-      firstProfileIds.set(participant.speakerId, `agenda-${rowIndex}-${participant.speakerId}`);
-    }
-  });
-});
 const navigationLinks = [...document.querySelectorAll('.nav-link')];
 let navigationSections = [];
 let navigationFrame = 0;
@@ -74,14 +66,6 @@ function renderAgenda(t) {
   </li>`).join('');
 }
 
-function renderSpeakerLink(id) {
-  const speaker = eventData.speakers[id];
-  return `<li><a class="speaker-index-link glass" href="#${escapeHTML(firstProfileIds.get(id))}">
-    <span class="speaker-index-name">${escapeHTML(speaker.name)}</span>
-    <span class="speaker-index-role">${escapeHTML(speaker.role)}</span>
-  </a></li>`;
-}
-
 function renderPage() {
   const t = copy;
   document.documentElement.lang = 'en';
@@ -104,11 +88,6 @@ function renderPage() {
         <div class="agenda-heading"><p class="agenda-date">${escapeHTML(t.date)} · The Westin Jakarta</p><p class="agenda-window">All times in WIB</p></div>
         <ol class="agenda-list">${renderAgenda(t)}</ol>
       </div></div>
-    </section>
-    <section id="speakers" class="speakers-section section-purple" aria-labelledby="speakers-title">
-      <div class="container"><h2 id="speakers-title" class="section-title">${escapeHTML(t.speakers)}</h2>
-        <ul class="speaker-index">${session.speakerIds.map(renderSpeakerLink).join('')}</ul>
-      </div>
     </section>
     <section id="location" class="location-section section-purple" aria-labelledby="location-title">
       <div class="container"><h2 id="location-title" class="section-title">${escapeHTML(t.location)}</h2><p class="section-subtitle">${escapeHTML(t.locationIntro)}</p>

@@ -1,12 +1,12 @@
 # OEM Innovation Forum Indonesia
 
-Static, responsive event microsite with separate ISV Partner Innovation Forum and Customer Leader Circle pages. Both retain the purple Lenovo event styling and Montserrat typography. Each page contains the session banner, detailed agenda with speaker photos or labeled placeholders and short biographies inside the relevant agenda entries, a compact speaker directory, then the venue location. The directory lists names and roles and links to each speaker's first agenda profile instead of repeating biographies. Navigation is Agenda → Speakers → Location. All public text is in English, with no language selector.
+Static, responsive event microsite with separate ISV Partner Innovation Forum and Customer Leader Circle pages. Both retain the purple Lenovo event styling and Montserrat typography. Each page contains the session banner, detailed agenda with supplied speaker photos and short biographies inside the relevant agenda entries, then the venue location. Following the user's 11 October feedback, there is no separate speaker directory or section. Navigation is Agenda → Location. All public text is in English, with no language selector.
 
 ## Local preview
 
 Run `python -m http.server 4173 --bind 127.0.0.1 --directory dist` from this directory, then open http://127.0.0.1:4173.
 
-- http://127.0.0.1:4173/morning/ — ISV Partner Innovation Forum, official banner time **09:00–13:00 WIB**. The detailed source rundown includes registration 08:00–09:00 and ends at 12:50. Twelve agenda items and eight scheduled speakers.
+- http://127.0.0.1:4173/morning/ — ISV Partner Innovation Forum, official banner time **09:00–13:00 WIB**. The detailed source rundown includes registration 08:00–09:00 and ends at 12:50. Twelve agenda items and nine scheduled speakers.
 - http://127.0.0.1:4173/afternoon/ — Customer Leader Circle, official banner time **17:00–20:00 WIB**. The detailed source rundown includes registration 17:00–18:00 and ends at 20:50. Eleven agenda items and eight scheduled speakers.
 
 Both sessions take place on 14 October 2026 at The Westin Jakarta. The root URL defaults to morning. Each route contains only its own agenda and speakers.
@@ -28,12 +28,12 @@ This project is for local development and preview. Publish, deploy, or push only
 
 ## Content and assets
 
-- Detailed agenda-row times, session titles, names, and roles follow the user-shared **Tracker Lenovo OEM Innovation Forum.xlsx**, worksheet **Agenda for Bumpers**, received 10 October 2026. The user's subsequent correction restores the official banner times to **09:00–13:00 WIB** and **17:00–20:00 WIB** without changing the detailed source rundown. Registration remains an agenda item without a registration form or CTA.
+- Detailed agenda-row times, session titles, names, and roles follow the user-shared **Tracker Lenovo OEM Innovation Forum.xlsx**, worksheet **Agenda for Bumpers**, received 10 October 2026, with the morning opening speaker confirmed by the user's updated rundown screenshot on 11 October 2026. The user's subsequent correction restores the official banner times to **09:00–13:00 WIB** and **17:00–20:00 WIB** without changing the detailed source rundown. Registration remains an agenda item without a registration form or CTA.
 - The agenda heading displays the date and “All times in WIB”; its individual rows retain the supplied rundown times rather than presenting a conflicting overall event window.
-- The morning opening executive speaker is tentative. The public agenda uses “Lenovo Executive” with a tentative badge; the three source alternatives are not published as confirmed speakers or cards.
+- The morning opening at **09:05–09:15** is assigned to **Varin Derjit Singh, President Director, Lenovo Indonesia**, as confirmed in the updated 11 October rundown. The evening opening remains assigned to Joni Irwanto. Earlier morning alternatives Alex Sun and Susianty Bong are not published as confirmed speakers or cards.
 - Omar’s current supplied role is President Commissioner, BNI (2025–Present), with the former role Deputy President Director & CEO, Pertamina (2009–2010).
 - Samuel Tan’s short biography summarizes the supplied Auk Industries biography. Other speakers use only their supplied roles while broader biographies are unavailable.
-- Sonny and Omar use the user-supplied PNG portraits on white circles, and Samuel uses the supplied JPEG portrait. Missing photos use white circles with initials and the visible label “Photo coming soon”. A failed portrait request also falls back to the labeled placeholder. The same portrait and English short biography appear inside that speaker's relevant agenda entries.
+- All 13 scheduled speakers use the original transparent PNG portraits from the user-supplied **Speaker Photo for Microsite Lenovo OEM-20261011T075515Z-1-001.zip**, received 11 October 2026. Files are copied without modifying image bytes and named `speaker-<id>-20261011.png` in `dist/assets/`. The PNGs appear on white circles inside the relevant agenda entries alongside the English short biography. Every scheduled speaker has a supplied photo; the initials and “Photo coming soon” placeholder remains available if an image request fails. Older portrait assets are retained.
 - The original **1920×1200** hero artwork is served as `hero-morning.webp` and `hero-afternoon.webp`, retaining the supplied composition, title, date, venue, logos, photograph and correct original times: **09:00–13:00 WIB** and **17:00–20:00 WIB**. Source PNG copies are retained in `dist/assets/`. The date and official banner time are also displayed as English page text. Backgrounds and the Montserrat font come from the supplied Lenovo TechDay reference.
 - The location map and directions link use The Westin Jakarta and require internet access.
 

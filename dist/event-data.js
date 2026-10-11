@@ -2,15 +2,26 @@
 // Workbook downloaded from the user-shared Chrome workbook on 10 October 2026.
 // Samuel Tan biography:
 // https://docs.google.com/document/d/1jiSpzH0yygMBQoJ7xft0DNwyMRPSvQBn/edit
-// Yellow E7 identifies a tentative executive speaker, not three confirmed speakers.
+// The user's updated rundown screenshot on 11 October confirms Varin Derjit Singh
+// for the morning opening. Speaker portraits come from the supplied 11 October ZIP.
 const eventData = {
   siteName: 'OEM Innovation Forum Indonesia',
   speakers: {
+    varin: {
+      id: 'varin',
+      name: 'Varin Derjit Singh',
+      role: 'President Director, Lenovo Indonesia',
+      portrait: 'speaker-varin-20261011.png',
+      initials: 'VS',
+      bio: {
+        en: 'Varin Derjit Singh is President Director of Lenovo Indonesia.'
+      }
+    },
     sonny: {
       id: 'sonny',
       name: 'Dr. Sonny Hendra Sudaryana',
       role: 'Director of Digital Ecosystem Development, Ministry of Communication and Digital Affairs (KOMDIGI)',
-      portrait: 'speaker-sonny-hd.png',
+      portrait: 'speaker-sonny-20261011.png',
       initials: 'SH',
       bio: {
         en: 'Dr. Sonny Hendra Sudaryana is Director of Digital Ecosystem Development at the Ministry of Communication and Digital Affairs (KOMDIGI).'
@@ -20,7 +31,7 @@ const eventData = {
       id: 'omar',
       name: 'Omar Sjawaldy Anwar',
       role: 'President Commissioner, BNI (2025-Present); Former Deputy President Director & CEO, Pertamina (2009-2010)',
-      portrait: 'speaker-omar-hd.png',
+      portrait: 'speaker-omar-20261011.png',
       initials: 'OA',
       bio: {
         en: 'Omar Sjawaldy Anwar is President Commissioner of BNI (2025–present) and was Deputy President Director & CEO of Pertamina (2009–2010).'
@@ -30,7 +41,7 @@ const eventData = {
       id: 'ryan',
       name: 'Ryan Renaldy',
       role: 'Country Business Manager OEM, Lenovo Indonesia',
-      portrait: null,
+      portrait: 'speaker-ryan-20261011.png',
       initials: 'RR',
       bio: {
         en: 'Ryan Renaldy is Country Business Manager OEM at Lenovo Indonesia.'
@@ -40,7 +51,7 @@ const eventData = {
       id: 'aldrian',
       name: 'Aldrian R. Susantio',
       role: 'Central Asia Pacific Regional Manager Lenovo Account Team, Intel Corporation',
-      portrait: null,
+      portrait: 'speaker-aldrian-20261011.png',
       initials: 'AS',
       bio: {
         en: 'Aldrian R. Susantio is Central Asia Pacific Regional Manager Lenovo Account Team at Intel Corporation.'
@@ -50,7 +61,7 @@ const eventData = {
       id: 'azis',
       name: 'Azis Wonosari',
       role: 'Senior Solution Consultant, Lenovo Indonesia',
-      portrait: null,
+      portrait: 'speaker-azis-20261011.png',
       initials: 'AW',
       bio: {
         en: 'Azis Wonosari is Senior Solution Consultant at Lenovo Indonesia.'
@@ -60,7 +71,7 @@ const eventData = {
       id: 'imam',
       name: 'Imam Munajat',
       role: 'Client Solution Architect (CSA), Lenovo Indonesia',
-      portrait: null,
+      portrait: 'speaker-imam-20261011.png',
       initials: 'IM',
       bio: {
         en: 'Imam Munajat is Client Solution Architect (CSA) at Lenovo Indonesia.'
@@ -70,7 +81,7 @@ const eventData = {
       id: 'andi',
       name: 'Andi Darma',
       role: 'Director, Next Gen AI',
-      portrait: null,
+      portrait: 'speaker-andi-20261011.png',
       initials: 'AD',
       bio: {
         en: 'Andi Darma is Director at Next Gen AI.'
@@ -80,7 +91,7 @@ const eventData = {
       id: 'samuel',
       name: 'Samuel Tan',
       role: 'CEO & Cofounder, Auk Industries',
-      portrait: 'speaker-samuel.jpg',
+      portrait: 'speaker-samuel-20261011.png',
       initials: 'ST',
       bio: {
         en: 'Samuel Tan is CEO and Cofounder of Auk Industries, which uses industrial intelligence and real-time factory data to support manufacturing operations. He previously worked as an Operations Associate at McKinsey, focusing on lean manufacturing and supply chains, and earlier joined General Electric’s Operations Management Leadership Program (OMLP).'
@@ -90,7 +101,7 @@ const eventData = {
       id: 'ricky',
       name: 'Ricky Chan',
       role: 'Head of Asia Pacific OEM Solutions, Lenovo',
-      portrait: null,
+      portrait: 'speaker-ricky-20261011.png',
       initials: 'RC',
       bio: {
         en: 'Ricky Chan is Head of Asia Pacific OEM Solutions at Lenovo.'
@@ -100,7 +111,7 @@ const eventData = {
       id: 'joni',
       name: 'Joni Irwanto',
       role: 'Sales Director - Key, Global, and MM Business Account, Lenovo Indonesia',
-      portrait: null,
+      portrait: 'speaker-joni-20261011.png',
       initials: 'JI',
       bio: {
         en: 'Joni Irwanto is Sales Director - Key, Global, and MM Business Account at Lenovo Indonesia.'
@@ -110,7 +121,7 @@ const eventData = {
       id: 'naraina',
       name: 'Naraina Yogas',
       role: 'CTO, Linknau',
-      portrait: null,
+      portrait: 'speaker-naraina-20261011.png',
       initials: 'NY',
       bio: {
         en: 'Naraina Yogas is CTO at Linknau.'
@@ -120,7 +131,7 @@ const eventData = {
       id: 'dany',
       name: 'Dany Beler',
       role: 'Stand Up Comedy',
-      portrait: null,
+      portrait: 'speaker-dany-20261011.png',
       initials: 'DB',
       bio: {
         en: 'Dany Beler appears in the Stand-up Comedy session.'
@@ -134,7 +145,7 @@ const eventData = {
       tagline: 'Build what’s next with Lenovo technology.',
       time: '09:00 – 13:00 WIB',
       registration: '08:00 – 09:00 WIB',
-      speakerIds: ['sonny', 'ryan', 'aldrian', 'azis', 'imam', 'andi', 'samuel', 'ricky'],
+      speakerIds: ['varin', 'sonny', 'ryan', 'aldrian', 'azis', 'imam', 'andi', 'samuel', 'ricky'],
       agenda: [
         {
           start: '08:00', end: '09:00', time: '08:00 – 09:00',
@@ -149,8 +160,8 @@ const eventData = {
         {
           start: '09:05', end: '09:15', time: '09:05 – 09:15',
           title: 'Opening Speech by Lenovo Executive',
-          participants: [{ name: 'Lenovo Executive', role: '', tentative: true }],
-          tentative: true, sourceRow: 7
+          participants: [{ speakerId: 'varin', name: 'Varin Derjit Singh', role: 'President Director, Lenovo Indonesia' }],
+          sourceRow: 7
         },
         {
           start: '09:15', end: '09:35', time: '09:15 – 09:35',
