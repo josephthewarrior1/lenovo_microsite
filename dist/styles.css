@@ -59,7 +59,7 @@ button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid #fff
 .portrait--placeholder{align-items:center;color:var(--purple)}
 .portrait--placeholder span{font-size:38px;font-weight:650;letter-spacing:1px;line-height:1}
 .agenda-participant .photo-status{font-size:10px;line-height:1.5;color:var(--muted);margin:8px 0 0}
-.agenda-participant .speaker-bio{font-size:13px;line-height:1.8;color:var(--ink);margin:6px 0 0;max-width:65ch}
+.agenda-participant .speaker-role{font-size:13px;line-height:1.8;color:var(--ink);margin:6px 0 0;max-width:65ch}
 .location-section{padding:60px 0 65px;text-align:center;color:var(--white);background:var(--purple) url('assets/location-bg-20261011.png') center/cover no-repeat}
 .location-section .section-title{margin-bottom:22px}
 .section-subtitle{text-align:center;font-size:16px;margin:0 auto 6px;color:var(--white)}
@@ -89,7 +89,7 @@ button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid #fff
   .agenda-content h3{font-size:17px;margin-bottom:11px}.agenda-participant strong{font-size:14px}.agenda-participant p{font-size:12px}
   .agenda-participant--profile{grid-template-columns:minmax(0,1fr);gap:16px;scroll-margin-top:88px}.agenda-photo{justify-self:start}
   .portrait{width:140px;height:140px}.portrait--placeholder span{font-size:42px}
-  .agenda-participant .speaker-bio{font-size:13px}
+  .agenda-participant .speaker-role{font-size:13px}
   .location-section{padding:38px 0 40px}.section-subtitle{font-size:14px}
   .location-info strong{font-size:21px}.location-info p{font-size:14px}.map-frame{padding:7px;border-radius:13px}
   .map-frame iframe{height:300px;border-radius:7px}.directions-button{font-size:15px;padding:12px 26px}

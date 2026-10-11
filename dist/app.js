@@ -6,7 +6,7 @@ const copy = {
     locationIntro: 'Meet us at',
     mapTitle: 'The Westin Jakarta on Google Maps', directions: 'Get directions',
     tentative: 'Tentative', moderator: 'Moderator', photoSoon: 'Photo coming soon',
-    bioLabel: 'About the speaker', navigationLabel: 'Main navigation',
+    roleLabel: 'Title and company', navigationLabel: 'Main navigation',
     skip: 'Skip to content'
 };
 const navigationLinks = [...document.querySelectorAll('.nav-link')];
@@ -40,7 +40,7 @@ function renderParticipant(participant, t, rowIndex) {
       ${renderPortrait(speaker, t)}
       <div class="agenda-profile-copy">
         <div class="agenda-participant-name"><strong>${escapeHTML(participant.name)}</strong>${badge}</div>
-        <p class="speaker-bio" aria-label="${escapeHTML(t.bioLabel)}">${escapeHTML(speaker.bio.en)}</p>
+        <p class="speaker-role" aria-label="${escapeHTML(t.roleLabel)}">${escapeHTML(speaker.role)}</p>
       </div>
     </li>`;
   }
