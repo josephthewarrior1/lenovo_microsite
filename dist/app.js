@@ -1,9 +1,9 @@
 const session = eventData.sessions[document.body.dataset.session] || eventData.sessions.morning;
 const assetBase = new URL('assets/', document.currentScript.src).href;
 const copy = {
-    navAgenda: 'Agenda', navLocation: 'Location', agenda: 'Agenda',
-    date: 'Wednesday, 14 October 2026', location: 'Location',
-    locationIntro: 'Meet us at The Westin Jakarta.',
+    navAgenda: 'Agenda', navLocation: 'Location', agenda: 'AGENDA',
+    date: 'Wednesday, 14 October 2026', location: 'LOCATION',
+    locationIntro: 'Meet us at',
     mapTitle: 'The Westin Jakarta on Google Maps', directions: 'Get directions',
     tentative: 'Tentative', moderator: 'Moderator', photoSoon: 'Photo coming soon',
     bioLabel: 'About the speaker', navigationLabel: 'Main navigation',
@@ -87,14 +87,14 @@ function renderPage() {
   banner.alt = `${eventData.siteName} – ${session.title}, ${t.date}, ${session.time}, The Westin Jakarta`;
 
   document.getElementById('event-sections').innerHTML = `
-    <section id="agenda" class="agenda-section section-purple" aria-labelledby="agenda-title">
-      <div class="container"><div class="agenda-panel glass">
-        <h2 id="agenda-title" class="floating-title">${escapeHTML(t.agenda)}</h2>
-        <div class="agenda-heading"><p class="agenda-date">${escapeHTML(t.date)} · The Westin Jakarta</p><p class="agenda-window">All times in WIB</p></div>
+    <section id="agenda" class="agenda-section" aria-labelledby="agenda-title">
+      <div class="container"><div class="agenda-panel">
+        <h2 id="agenda-title" class="section-title">${escapeHTML(t.agenda)}</h2>
+        <div class="agenda-heading"><p class="agenda-date">${escapeHTML(t.date)}</p><p class="agenda-venue">The Westin Jakarta</p><p class="agenda-window">All times in WIB</p></div>
         <ol class="agenda-list">${renderAgenda(t)}</ol>
       </div></div>
     </section>
-    <section id="location" class="location-section section-purple" aria-labelledby="location-title">
+    <section id="location" class="location-section" aria-labelledby="location-title">
       <div class="container"><h2 id="location-title" class="section-title">${escapeHTML(t.location)}</h2><p class="section-subtitle">${escapeHTML(t.locationIntro)}</p>
         <div class="location-info"><strong>The Westin Jakarta</strong><p>Jl. H.R. Rasuna Said Blok C No.22A, Jakarta</p></div>
         <div class="map-frame glass"><iframe title="${escapeHTML(t.mapTitle)}" src="https://maps.google.com/maps?q=The%20Westin%20Jakarta%20Jl.%20H.R.%20Rasuna%20Said%20Blok%20C%20No.22A&z=16&output=embed" width="1180" height="370" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>

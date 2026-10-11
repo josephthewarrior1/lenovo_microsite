@@ -142,7 +142,7 @@ const eventData = {
     morning: {
       id: 'morning',
       title: 'ISV Partner Innovation Forum',
-      tagline: 'Build what’s next with Lenovo technology.',
+      tagline: 'Build What’s Next with Lenovo Technology',
       time: '09:00 – 13:00 WIB',
       registration: '08:00 – 09:00 WIB',
       speakerIds: ['varin', 'sonny', 'ryan', 'aldrian', 'azis', 'imam', 'andi', 'samuel', 'ricky'],
