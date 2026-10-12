@@ -2,6 +2,8 @@
 // Workbook downloaded from the user-shared Chrome workbook on 10 October 2026.
 // Samuel Tan biography:
 // https://docs.google.com/document/d/1jiSpzH0yygMBQoJ7xft0DNwyMRPSvQBn/edit
+// Andi Darma biography: user-supplied Biodata_Pembicara_Andi_Darma_Lenovo_OEM_Forum.pdf,
+// professional profile and education translated into English on 12 October 2026.
 // The user's updated rundown screenshot on 11 October confirms Varin Derjit Singh
 // for the morning opening. Speaker portraits come from the supplied 11 October ZIP.
 const eventData = {
@@ -90,12 +92,20 @@ const eventData = {
     andi: {
       id: 'andi',
       name: 'Andi Darma',
-      role: 'Director, Next Gen AI',
-      affiliations: [{ jobTitle: 'Director', company: 'Next Gen AI' }],
+      role: 'Founder & CEO, PT NextGen AI Technology',
+      affiliations: [{ jobTitle: 'Founder & CEO', company: 'PT NextGen AI Technology' }],
       portrait: 'speaker-andi-20261011.png',
       initials: 'AD',
       bio: {
-        en: 'Andi Darma is Director at Next Gen AI.'
+        en: 'Andi Darma is Founder & CEO of PT NextGen AI Technology.'
+      },
+      profile: {
+        paragraphs: [
+          "Andi Darma is Founder & CEO of PT NextGen AI Technology, an Indonesian technology company developing AI-Motions, an Agentic AI platform for health insurance claims verification and management. With more than 25 years of experience in banking, finance, and technology, he leads the product's entire journey, from building the development team to implementation at health insurance companies.",
+          'Before entering the AI industry, Andi spent nearly 24 years at PT Bank Bukopin Tbk (1997-2021). He began as a Senior Officer responsible for loan reviews, value-at-risk analysis, and credit and operational risk mitigation, then progressed to Business Manager, Branch Manager, and General Manager, leading regional business teams. He later served as General Manager of KOPERNAS (2021-2023), building a sales team for financial institutions and supporting digital applications.',
+          "Since 2023, Andi has focused on developing claims management applications, initially as Director of PT Braco Ekspansi Maritim and subsequently through PT NextGen AI Technology. His understanding of risk and financial institutions' business processes, combined with hands-on experience building AI products, connects real industry needs with practical technology solutions. AI-Motions has operated in production since March 2024 and has verified more than 468,000 claims from 2,780 connected hospitals.",
+          "Andi holds a bachelor's degree in Agribusiness from Institut Pertanian Bogor (IPB)."
+        ]
       }
     },
     samuel: {
