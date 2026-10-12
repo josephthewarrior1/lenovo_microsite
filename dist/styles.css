@@ -77,6 +77,7 @@ body.profile-open{overflow:hidden}
 .speaker-profile-affiliations{margin-top:8px}
 .speaker-profile-biography{margin-top:24px}
 .speaker-profile-biography p,.speaker-profile-contact{font-size:14px;line-height:1.8;margin:0 0 18px;overflow-wrap:break-word}
+.speaker-profile-biography p{text-align:justify;text-justify:inter-word}
 .speaker-profile-contact{margin-bottom:0}
 .speaker-profile-contact a{color:var(--purple);text-underline-offset:3px}
 .location-section{padding:60px 0 65px;text-align:center;color:var(--white);background:var(--purple) url('assets/location-bg-20261011.png') center/cover no-repeat}
