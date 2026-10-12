@@ -4,6 +4,7 @@
 // https://docs.google.com/document/d/1jiSpzH0yygMBQoJ7xft0DNwyMRPSvQBn/edit
 // Andi Darma biography: user-supplied Biodata_Pembicara_Andi_Darma_Lenovo_OEM_Forum.pdf,
 // professional profile and education translated into English on 12 October 2026.
+// Naraina Yogas biography and education: user-supplied text on 12 October 2026.
 // The user's updated rundown screenshot on 11 October confirms Varin Derjit Singh
 // for the morning opening. Speaker portraits come from the supplied 11 October ZIP.
 const eventData = {
@@ -159,6 +160,12 @@ const eventData = {
       initials: 'NY',
       bio: {
         en: 'Naraina Yogas is CTO at Linknau.'
+      },
+      profile: {
+        paragraphs: [
+          "Naraina Yogas is a distinguished cybersecurity professional with over 22 years of experience in safeguarding digital ecosystems. Armed with a degree and a master's in computer science, Naraina combines deep technical expertise with visionary leadership to address the complex challenges of modern cybersecurity like threat detection, incident response, vulnerability assessment, and risk management. Naraina has a proven track record of developing strategies that not only protect enterprises but also drive innovation in cyber defense technologies.",
+          'Master’s Degree from University of Staffordshire, Kuala Lumpur'
+        ]
       }
     },
     dany: {
